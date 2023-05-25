@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mongodb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,6 +93,14 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        // nueva conexion con mongo DB
+        'mongodb' => [
+            'driver' => 'mongodb',  //  conexion a que tipo de base de datos
+            'dsn' => env('DB_DSN', 'mongodb+srv://feea:qpenqqoe@vallesurdb.gjdektn.mongodb.net/?retryWrites=true&w=majority'), //enlace de la base de datos
+            'database' => env('DB_DATABASE', 'vallesur_mongoDB'), // nombre de la base de datos
+            // 'username' => env('DB_USERNAME', ''),
+            // 'password' => env('DB_PASSWORD', '')
+        ],
     ],
 
     /*

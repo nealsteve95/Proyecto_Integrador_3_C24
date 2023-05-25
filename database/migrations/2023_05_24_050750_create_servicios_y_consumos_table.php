@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fotos', function (Blueprint $table) {
+        Schema::create('servicios_y_consumos', function (Blueprint $table) {
             $table->id();
-            $table->string('ruta');
-            $table->integer('estado');
+            $table->foreign('id_check_in')->references("id")->on('check_in');
+            $table->decimal('costo', 8, 2);
             $table->string('descripcion');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('tipo');  // enum ?
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fotos');
+        Schema::dropIfExists('servicios_y_consumos');
     }
 };
