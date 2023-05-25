@@ -96,7 +96,8 @@ return [
         // nueva conexion con mongo DB
         'mongodb' => [
             'driver' => 'mongodb',  //  conexion a que tipo de base de datos
-            'dsn' => env('DB_DSN', 'mongodb+srv://feea:qpenqqoe@vallesurdb.gjdektn.mongodb.net/?retryWrites=true&w=majority'), //enlace de la base de datos
+            // 'dsn' => env('DB_DSN', 'mongodb+srv://feea:qpenqqoe@vallesurdb.gjdektn.mongodb.net/?retryWrites=true&w=majority'), //enlace de la base de datos
+            'dsn' => env('DB_DSN', 'mongodb://localhost:27017'),
             'database' => env('DB_DATABASE', 'vallesur_mongoDB'), // nombre de la base de datos
             // 'username' => env('DB_USERNAME', ''),
             // 'password' => env('DB_PASSWORD', '')
