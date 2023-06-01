@@ -24,4 +24,12 @@ class administrador extends Model
         'contraseña',
         'permisos',
     ];
+
+    public function Check_in() {
+        return $this->hasMany(check_in::class);
+    }
+
+    public function Check_out() {
+        return $this->hasMany(check_out::class);
+    }
 }

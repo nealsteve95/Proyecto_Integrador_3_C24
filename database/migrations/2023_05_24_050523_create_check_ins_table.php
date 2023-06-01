@@ -15,15 +15,16 @@ return new class extends Migration
     {
         Schema::create('check_in', function (Blueprint $table) {
             $table->id();
-            $table->foreign('id_huesped')->references("id")->on('huesped');
-            $table->foreign('nro_habitacion')->references("nro_habitacion")->on('habitacion');
-            $table->foreign('id_recepcionista')->references("id")->on('recepcionista');
+            $table->unsignedBigInteger('id_reserva')->nullable();
+            $table->foreign('id_reserva')->references("id")->on('reserva')->onDelete("not null");
+            $table->unsignedBigInteger('id_administrador')->nullable();
+            $table->foreign('id_administrador')->references("id")->on('administrador')->onDelete("not null");
             $table->string('tipo_reserva');
             $table->integer('paxs');
-            $table->integer('cant_dias');
             $table->string('motivo_viaje');
             $table->date('fecha_ingreso');
-            $table->string('nota_adicional')->nullable();
+            $table->date('hora_ingreso');
+            $table->text('nota_adicional');
             $table->timestamps();
         });
     }

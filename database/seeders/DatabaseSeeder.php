@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             AdministradorSeeder::class,
             Check_inSeeder::class,
             CocheraSeeder::class,
+            ReservaSeeder::class,
+            Reserva_habitacionSeeder::class,
             Servicios_y_consumosSeeder::class,
             Check_outSeeder::class
         ]);

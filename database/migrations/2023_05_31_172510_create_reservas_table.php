@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('servicios_y_consumos', function (Blueprint $table) {
+        Schema::create('reserva', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("id_check_in");
-            $table->foreign('id_check_in')->references("id")->on('check_in')->onDelete("cascade");
-            $table->decimal('costo', 8, 2);
-            $table->string('descripcion');
-            $table->string('tipo');  // enum ?
+            $table->unsignedBigInteger('id_huesped')->nullable();
+            $table->foreign('id_huesped')->references('id_huesped')->on('huesped')->onDelete("not null");
+            $table->date('fecha_reserva');
+            $table->integer('cant_dias');
+            $table->integer('nro_acompañantes');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('servicios_y_consumos');
+        Schema::dropIfExists('reserva');
     }
 };

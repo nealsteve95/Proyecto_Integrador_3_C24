@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('cochera', function (Blueprint $table) {
             $table->id();
-            $table->foreign('id_huesped')->references("id")->on('huesped');
-            $table->foreign('id_check_in')->references("id")->on('check_in');
+            $table->unsignedBigInteger('id_huesped')->unique();
+            $table->foreign('id_huesped')->references("id_huesped")->on('huesped')->onDelete("cascade")->onUpdate("cascade");
             $table->string('placa');
             $table->string('color');
             $table->string('modelo');

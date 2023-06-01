@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('check_out', function (Blueprint $table) {
             $table->id();
-            $table->foreign('id_check_in')->references("id")->on('check_in');
-            $table->foreign('id_recepcionista')->references("id")->on('recepcionista');
+            $table->unsignedBigInteger("id_check_in");
+            $table->foreign('id_check_in')->references("id")->on('check_in')->onDelete("cascade");
+            $table->unsignedBigInteger("id_administrador")->nullable();
+            $table->foreign('id_administrador')->references("id")->on('administrador')->onDelete("not null");
             $table->string('entrega_llaves');
             $table->string('forma_pago');
             $table->string('estado_pago');
             $table->date('fecha_salida');
+            $table->date('hora_salida');
             $table->text('descripcion_estadia');
             $table->timestamps();
         });

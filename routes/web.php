@@ -1,7 +1,19 @@
 <?php
 
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
+use App\Models\Huesped;
+use App\Models\Habitacion;
+use App\Models\Cochera;
+use App\Models\Check_in;
+use App\Models\Servicios_y_consumos;
+use App\Models\Reserva;
+use App\Models\Administrador;
+use App\Models\Check_out;
+use App\Http\Controllers\UsuariosController;
+use App\Models\Reserva_habitacion;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,17 +26,57 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Auth::routes();
+// huesped 1:1 cochera >>>>
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/fotos', [App\Http\Controllers\FotoController::class, 'index'])->name('fotos');
-Route::get('/foto/{ruta}', [App\Http\Controllers\FotoController::class, 'mostrarFoto']);
-Route::post('/subirFoto', [App\Http\Controllers\FotoController::class, 'subirFoto'])->name('subirFoto');
-Route::post('/eliminarFoto', [App\Http\Controllers\FotoController::class, 'eliminarFoto'])->name('eliminarFoto');
-Route::post('/subirComentario', [App\Http\Controllers\FotoController::class, 'subirComentario'])->name('subirComentario');
+// Route::get('/', function () {
+//     return huesped::with('cochera')->get();
+// });
+
+// huesped 1:N reserva >>>>
+
+// Route::get('/', function () {
+//     return huesped::with('reserva')->get();
+// });
+
+// reserva N:N habitacion >>>>
 
 
+ Route::get('/', function () {
+     return Reserva_habitacion::with('reserva')->get();
+ });
+
+//  Route::get('/', function () {
+//     return Reserva_habitacion::with('habitacion')->get();
+// });
+
+
+// check-in 1:1 reserva >>>>
+//  Route::get('/', function () {
+//      return check_in::with('reserva')->get();
+//  });
+
+
+
+// check-in 1:N s_y_C >>>>
+
+//  Route::get('/', function () {
+//      return Servicios_y_consumos::with('check_in')->get();
+//  });
+
+// check-in 1:1 check_out >>>>
+
+// Route::get('/', function () {
+//     return Check_out::with('check_in')->get();
+// });
+
+// check_in o checkout N:1 administrador
+
+// Route::get('/', function () {
+//     return Check_out::with('administrador')->get();
+// });
+
+// check_in 1:1 check_out
+// Route::get('/', function () {
+//     return check_out::with('check_in')->get();
+// });

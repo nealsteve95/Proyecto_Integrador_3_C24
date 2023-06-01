@@ -18,26 +18,23 @@ class CocheraSeeder extends Seeder
     {
         $datacochera = [
             [
-                "id_huesped" => Huesped::where('id_huesped', '78943238')->value('id_huesped'),
-                "id_check_in" => Check_in::where('id', 2)->value('id'),
+                "id_huesped" => 67432324,//Huesped::where('id_huesped', '78943238')->value('id_huesped'),
                 "placa" => "ABC-123",
                 "color" => "Negro",
                 "modelo" => "Sedán",
             ],
-            [
-                "id_huesped" => Huesped::where('id_huesped', '27347132')->value('id_huesped'),
-                "id_check_in" => Check_in::where('id', 5)->value('id'),
-                "placa" => "DEF-456",
-                "color" => "Blanco",
-                "modelo" => "SUV",
-            ],
-            [
-                "id_huesped" => Huesped::where('id_huesped', '11129123')->value('id_huesped'),
-                "id_check_in" => Check_in::where('id', 4)->value('id'),
-                "placa" => "GHI-789",
-                "color" => "Rojo",
-                "modelo" => "Hatchback",
-            ],
+            // [
+            //     "id_huesped" => Huesped::where('id_huesped', '27347132')->value('id_huesped'),
+            //     "placa" => "DEF-456",
+            //     "color" => "Blanco",
+            //     "modelo" => "SUV",
+            // ],
+            // [
+            //     "id_huesped" => Huesped::where('id_huesped', '11129123')->value('id_huesped'),
+            //     "placa" => "GHI-789",
+            //     "color" => "Rojo",
+            //     "modelo" => "Hatchback",
+            // ],
         ];
         
         Cochera::insert($datacochera);

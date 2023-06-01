@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('huesped', function (Blueprint $table) {
             $table->id();
-            $table->string('id_huesped')->unique();
+            $table->integer('id_huesped');
             $table->string('tipo_identificacion');
             $table->string('nombres');
             $table->string('apellidos');
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('region_direccion');
             $table->string('telefono');
             $table->string('correo');
+            $table->string('contraseña');
             $table->json('id_empresa');
             $table->timestamps();
         });

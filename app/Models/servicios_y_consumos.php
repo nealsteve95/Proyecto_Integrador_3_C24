@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 //use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model;
+use App\Models\Check_in;
 
 class servicios_y_consumos extends Model
 {
@@ -18,4 +19,8 @@ class servicios_y_consumos extends Model
         'descripcion',
         'tipo',
     ];
+
+    public function Check_in(){
+        return $this->belongsTo(check_in::class, "id_check_in", "id");
+    }
 }
