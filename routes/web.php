@@ -1,8 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+// Controladores (no tocar)
 use App\Http\Controllers\HuespedController;
 use App\Http\Controllers\HabitacionController;
+use App\Http\Controllers\AdministradoresController;
+use App\Http\Controllers\CheckinController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CocheraController;
+use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\ServicioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,32 +24,37 @@ use App\Http\Controllers\HabitacionController;
 |
 */
 
-Route::get('/', function () {
-    return view('view_gerente/index');
-}) -> name('home');
+/**
+ * Tipos de peticiones:
+ *
+ * GET (Obtener info -> Mostrar información de objeto)
+ * POST (Enviar info -> Mayormente para crear nuevo objeto)
+ * DELETE (Eliminar -> Según cierta info se elimina un objeto)
+ * PUT (Reemplazo -> Reemplaza toda la información de un objeto)
+ * PATCH (Reemplazo -> Reemplaza información específica de una entidad)
+ *
+ */
 
-Route::get('/huespedes', [HuespedController::class, 'index']) -> name('huespedes');
-Route::get('/huespedes-show/{id}', [HuespedController::class, 'show'])->name('huespedes-show');
-Route::delete('/huespedes-delete/{id}', [HuespedController::class, 'delete']) -> name('huespedes-delete');
+// Rutas para vista de gerente
 
-Route::get('/habitaciones', [HabitacionController::class, 'index']) -> name('habitaciones');
-Route::get('/habitaciones-show/{id}', [HabitacionController::class, 'show']) -> name('habitaciones-show');
-Route::delete('/habitaciones-delete/{id}', [HabitacionController::class, 'delete']) -> name('habitaciones-delete');
-Route::post('/habitaciones-insert', [HabitacionController::class, 'store']) -> name('habitaciones-insert');
-Route::put('/habitaciones-update/{id}', [HabitacionController::class, 'update']) -> name('habitaciones-update');
+Route::get('/gerente/home', function(){ return view('view_gerente/index'); }) -> name('gerente/home');
+// Podrían ir más rutas para el home
 
-Route::get('/reservas', function () {
-    return view('view_gerente/reservas/index');
-}) -> name('reservas');
-Route::get('/checkins', function () {
-    return view('view_gerente/checkin');
-}) -> name('checkins');
-Route::get('/checkouts', function () {
-    return view('view_gerente/checkout');
-}) -> name('checkouts');
-Route::get('/reportes', function () {
-    return view('view_gerente/reportes/report');
-}) -> name('reportes');
-Route::get('/recepcionistas', function () {
-    return view('view_gerente/recep');
-}) -> name('recepcionistas');
+Route::get('/gerente/huespedes', [HuespedController::class, 'index']) -> name('gerente/huespedes');
+Route::get('/gerente/huespedes-show/{id}', [HuespedController::class, 'show'])->name('gerente/huespedes-show');
+
+Route::get('/gerente/habitaciones', [HabitacionController::class, 'index']) -> name('gerente/habitaciones');
+Route::get('/gerente/habitaciones-show/{id}', [HabitacionController::class, 'show']) -> name('gerente/habitaciones-show');
+Route::put('/gerente/habitaciones-update/{id}', [HabitacionController::class, 'update']) -> name('gerente/habitaciones-update');
+
+Route::get('/gerente/recepcionistas', [AdministradoresController::class, 'index']) -> name('gerente/recepcionistas');
+Route::get('/gerente/recepcionistas-show/{id}', [AdministradoresController::class, 'show']) -> name('gerente/recepcionistas-show');
+Route::put('/gerente/recepcionistas-update/{id}', [AdministradoresController::class, 'update']) -> name('gerente/recepcionistas-update');
+Route::delete('/gerente/recepcionistas-delete/{id}', [AdministradoresController::class, 'delete']) -> name('gerente/recepcionistas-delete');
+Route::get('/gerente/recepcionistas-showCreate', function(){ return view('view_gerente/recepcionistas/showCreate'); }) -> name('gerente/recepcionistas-showCreate');
+Route::post('/gerente/recepcionistas-create/{id}', [AdministradoresController::class, 'create']) -> name('gerente/recepcionistas-create');
+
+// Faltan rutas para los reportes
+Route::get('/gerente/reportes', function() { return view('view_gerente/reportes/index'); }) -> name('gerente/reportes');
+
+// Rutas para vista de recepcionista
