@@ -50,6 +50,7 @@ Route::put('/gerente/habitaciones-update/{id}', [HabitacionController::class, 'u
 Route::get('/gerente/recepcionistas', [AdministradoresController::class, 'index']) -> name('gerente/recepcionistas');
 Route::get('/gerente/recepcionistas-show/{id}', [AdministradoresController::class, 'show']) -> name('gerente/recepcionistas-show');
 Route::put('/gerente/recepcionistas-update/{id}', [AdministradoresController::class, 'update']) -> name('gerente/recepcionistas-update');
+Route::put('/gerente/recepcionistas-updateUser/{id}', [AdministradoresController::class, 'updateUser']) -> name('gerente/recepcionistas-updateUser');
 Route::delete('/gerente/recepcionistas-delete/{id}', [AdministradoresController::class, 'delete']) -> name('gerente/recepcionistas-delete');
 Route::get('/gerente/recepcionistas-showCreate', function(){ return view('view_gerente/recepcionistas/showCreate'); }) -> name('gerente/recepcionistas-showCreate');
 Route::post('/gerente/recepcionistas-create', [AdministradoresController::class, 'store']) -> name('gerente/recepcionistas-create');

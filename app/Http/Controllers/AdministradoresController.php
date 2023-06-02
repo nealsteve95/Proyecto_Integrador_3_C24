@@ -45,7 +45,7 @@ class AdministradoresController extends Controller
         Administrador::destroy($id);
 
         // Reidreccionamos a la ruta de lista index
-        return redirect()->route('administradores')->with('success', 'Administrador eliminado');
+        return redirect()->route('gerente/recepcionistas')->with('success', 'Administrador eliminado');
     }
     public function show($id) {
 
@@ -65,15 +65,28 @@ class AdministradoresController extends Controller
         $administrador->apellidos = $request->apellidos;
         $administrador->turno = $request->turno;
         $administrador->telefono = $request->telefono;
-        $administrador->correo = $request->correo;
         $administrador->dni = $request->dni;
-        $administrador->contrasena = $request->contrasena;
         $administrador->permisos = $request->permisos;
 
         // Guardamos objeto
         $administrador->save();
 
         // Redireccionamos a la ruta de index
-        return redirect()->route('gerente/recepcionistas')->with('success', 'Administrador actualizado');
+        return redirect()->route('gerente/recepcionistas-show', ['id'=>$administrador->id])->with('success', 'Administrador actualizado');
+    }
+    public function updateUser(Request $request, $id) {
+
+        // Obtenemos al administrador a actualizar
+        $administrador = Administrador::find($id);
+
+        // Actualizamos campos
+        $administrador->correo = $request->correo;
+        $administrador->contrasena = $request->contrasena;
+
+        // Guardamos objeto
+        $administrador->save();
+
+        // Redireccionamos a la ruta de index
+        return redirect()->route('gerente/recepcionistas-show', ['id'=>$administrador->id])->with('success', 'Administrador actualizado');
     }
 }

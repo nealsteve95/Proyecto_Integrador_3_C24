@@ -107,35 +107,39 @@
         </div>
         {{-- Aquí la lista de recepcionistas --}}
         @foreach ($recepcionistas as $recepcionista)
-        <a href="{{ route('gerente/recepcionistas-show', ['id'=>$recepcionista->id]) }}">
-            <div class="products-row">
-                <div class="product-cell image">
-                    <span>
-                        {{$recepcionista->dni}}
-                    </span>
+            <a href="{{ route('gerente/recepcionistas-show', ['id'=>$recepcionista->id]) }}">
+                <div class="products-row">
+                    <div class="product-cell image">
+                        <span>
+                            {{$recepcionista->dni}}
+                        </span>
+                    </div>
+                    <div class="product-cell category">
+                        <span class="cell-label">Nombres:</span>
+                        {{$recepcionista->nombres}}
+                    </div>
+                    <div class="product-cell status-cell">
+                        <span class="cell-label">Apellidos:</span>
+                        {{$recepcionista->apellidos}}
+                    </div>
+                    <div class="product-cell sales">
+                        <span class="cell-label">Turno:</span>
+                        {{$recepcionista->turno}}
+                    </div>
+                    <div class="product-cell stock">
+                        <span class="cell-label">Correo:</span>
+                        {{$recepcionista->correo}}
+                    </div>
+                    <div class="product-cell price">
+                        <span class="cell-label">Accion:</span>
+                        <form action="{{ route('gerente/recepcionistas-delete', ['id'=>$recepcionista]) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="raise btn-red">Eliminar</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="product-cell category">
-                    <span class="cell-label">Nombres:</span>
-                    {{$recepcionista->nombres}}
-                </div>
-                <div class="product-cell status-cell">
-                    <span class="cell-label">Apellidos:</span>
-                    {{$recepcionista->apellidos}}
-                </div>
-                <div class="product-cell sales">
-                    <span class="cell-label">Turno:</span>
-                    {{$recepcionista->turno}}
-                </div>
-                <div class="product-cell stock">
-                    <span class="cell-label">Correo:</span>
-                    {{$recepcionista->correo}}
-                </div>
-                <div class="product-cell price">
-                    <span class="cell-label">Accion:</span>
-                    <button class="raise btn-red">Eliminar</button>
-                </div>
-            </div>
-        </a>
+            </a>
         @endforeach
     </div>
 @endsection

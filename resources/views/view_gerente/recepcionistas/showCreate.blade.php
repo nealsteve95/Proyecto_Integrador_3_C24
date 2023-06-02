@@ -68,18 +68,19 @@
         <form action="{{ route('gerente/recepcionistas-create') }}" class="form" method="POST">
             @csrf
             <div class="form-group">
-                <input type="number" name="dni" class="form-input" placeholder="Dni">
+                <input type="number" name="dni" class="form-input" placeholder="Dni" required>
             </div>
             <div class="form-group">
-                <input type="text" placeholder="Nombres" name="nombres">
+                <input type="text" placeholder="Nombres" name="nombres" required>
             </div>
             <div class="form-group">
-                <input type="text" placeholder="Apellidos" name="apellidos">
+                <input type="text" placeholder="Apellidos" name="apellidos" required>
             </div>
             <div class="form-group">
+                <input type="hidden" value="recepcionista" name="permisos">
                 <label for="turno" class="form-label label-radio">Turno</label>
                 <div class="form-radio">
-                    <dir class="radio-group">
+                    <dir class="radio-group form-check-input">
                         <input type="radio" name="turno" value="mañana" checked><span>Mañana</span>
                     </dir>
                     <div class="radio-group">
@@ -94,19 +95,20 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="tel" placeholder="Telefono" name="telefono">
+                <input type="tel" placeholder="Telefono" name="telefono" required>
             </div>
             <div class="form-group">
-                <input type="text" placeholder="Correo electrónico" name="correo">
+                <input type="email" placeholder="Correo electrónico" name="correo" required>
             </div>
             <div class="form-group">
-                <input type="text" placeholder="Contraseña" name="contra">
+                <input type="password" placeholder="Contraseña" name="contrasena" required>
             </div>
             <div class="form-group">
-                <input type="text" placeholder="Confirmar contraseña" name="contra-confirm">
+                <input type="password" placeholder="Confirmar contraseña" name="contrasena-confirm" required>
             </div>
             <div class="form-group">
                 <button type="submit" class="raise btn-green">Generar recepcionista</button>
+                <a href="{{ route('gerente/recepcionistas') }}" class="raise btn-red button">Cancelar</a>
             </div>
         </form>
     </div>
