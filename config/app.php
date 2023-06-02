@@ -186,6 +186,7 @@ return [
         /*
          * Package Service Providers...
          */
+        BladeUI\Icons\BladeIconsServiceProvider::class,
 
         /*
          * Application Service Providers...

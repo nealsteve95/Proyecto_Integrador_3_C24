@@ -57,4 +57,21 @@ Route::post('/gerente/recepcionistas-create', [AdministradoresController::class,
 // Faltan rutas para los reportes
 Route::get('/gerente/reportes', function() { return view('view_gerente/reportes/index'); }) -> name('gerente/reportes');
 
+
+
 // Rutas para vista de recepcionista
+
+//rutas home
+Route::get('/administrador/home', function(){ return view('view_recepcionista/index'); }) -> name('administrador/home');
+
+
+
+
+
+//rutas huesped
+
+//rutas habitacion
+
+//Route::get('/administrador/habitaciones', [HabitacionController::class, 'index']) -> name('administrador/habitaciones');
+//Route::get('/administrador/habitaciones-show/{id}', [HabitacionController::class, 'show']) -> name('administrador/habitaciones-show');
+//Route::put('/administrador/habitaciones-update/{id}', [HabitacionController::class, 'update']) -> name('administrador/habitaciones-update');
