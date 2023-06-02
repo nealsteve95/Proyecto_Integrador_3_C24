@@ -65,43 +65,48 @@
         Creacion de recepcionista
     @endsection
     <div class="form-parent">
-        <form action="" class="form">
+        <form action="{{ route('gerente/recepcionistas-create') }}" class="form" method="POST">
+            @csrf
             <div class="form-group">
-                <label for="dni" class="form-label">Dni</label>
                 <input type="number" name="dni" class="form-input" placeholder="Dni">
             </div>
             <div class="form-group">
-                <label for="nombres" class="form-label">Nombres</label>
                 <input type="text" placeholder="Nombres" name="nombres">
             </div>
             <div class="form-group">
-                <label for="apellidos" class="form-label">Apellidos</label>
                 <input type="text" placeholder="Apellidos" name="apellidos">
             </div>
             <div class="form-group">
-                <label for="turno" class="form-label">Turno</label>
-                <input type="radio" name="turno" value="mañana" checked>Mañana
-                <input type="radio" name="turno" value="tarde">Tarde
+                <label for="turno" class="form-label label-radio">Turno</label>
+                <div class="form-radio">
+                    <dir class="radio-group">
+                        <input type="radio" name="turno" value="mañana" checked><span>Mañana</span>
+                    </dir>
+                    <div class="radio-group">
+                        <input type="radio" name="turno" value="tarde"><span>Tarde</span>
+                    </div>
+                    <div class="radio-group">
+                        <input type="radio" name="turno" value="noche"><span>Noche</span>
+                    </div>
+                    <div class="radio-group">
+                        <input type="radio" name="turno" value="finesSemana"><span>Otros</span>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
-                <label for="telefono" class="form-label">Telefono</label>
                 <input type="tel" placeholder="Telefono" name="telefono">
             </div>
             <div class="form-group">
-                <label for="correo" class="form-label">Correo Electrónico</label>
                 <input type="text" placeholder="Correo electrónico" name="correo">
             </div>
             <div class="form-group">
-                <label for="img-perfil" class="form-label">Imagen de perfil</label>
-                <input type="file" name="img-perfil" placeholder="Imagen de perfil">
-            </div>
-            <div class="form-group">
-                <label for="contra" class="form-label">Contraseña</label>
                 <input type="text" placeholder="Contraseña" name="contra">
             </div>
             <div class="form-group">
-                <label for="contra-confirm" class="form-label">Confirmar contraseña</label>
                 <input type="text" placeholder="Confirmar contraseña" name="contra-confirm">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="raise btn-green">Generar recepcionista</button>
             </div>
         </form>
     </div>

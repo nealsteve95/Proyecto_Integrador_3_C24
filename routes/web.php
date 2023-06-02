@@ -52,7 +52,7 @@ Route::get('/gerente/recepcionistas-show/{id}', [AdministradoresController::clas
 Route::put('/gerente/recepcionistas-update/{id}', [AdministradoresController::class, 'update']) -> name('gerente/recepcionistas-update');
 Route::delete('/gerente/recepcionistas-delete/{id}', [AdministradoresController::class, 'delete']) -> name('gerente/recepcionistas-delete');
 Route::get('/gerente/recepcionistas-showCreate', function(){ return view('view_gerente/recepcionistas/showCreate'); }) -> name('gerente/recepcionistas-showCreate');
-Route::post('/gerente/recepcionistas-create/{id}', [AdministradoresController::class, 'create']) -> name('gerente/recepcionistas-create');
+Route::post('/gerente/recepcionistas-create', [AdministradoresController::class, 'store']) -> name('gerente/recepcionistas-create');
 
 // Faltan rutas para los reportes
 Route::get('/gerente/reportes', function() { return view('view_gerente/reportes/index'); }) -> name('gerente/reportes');

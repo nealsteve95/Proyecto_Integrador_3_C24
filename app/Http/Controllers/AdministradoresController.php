@@ -37,7 +37,7 @@ class AdministradoresController extends Controller
 
         $administrador->save();
 
-        return redirect()->route('administradores')->with('success', 'Administrador creado');
+        return redirect()->route('gerente/recepcionistas')->with('success', 'Administrador creado');
     }
     public function delete($id) {
 
@@ -53,7 +53,7 @@ class AdministradoresController extends Controller
         $administrador = Administrador::find($id);
 
         // Reidreccionamos a la ruta de show con información del administrador
-        return view('view_gerente.administradores.show', ['administrador'=>$administrador]);
+        return view('view_gerente.recepcionistas.show', ['administrador'=>$administrador]);
     }
     public function update(Request $request, $id) {
 
@@ -74,6 +74,6 @@ class AdministradoresController extends Controller
         $administrador->save();
 
         // Redireccionamos a la ruta de index
-        return redirect()->route('administradores')->with('success', 'Administrador actualizado');
+        return redirect()->route('gerente/recepcionistas')->with('success', 'Administrador actualizado');
     }
 }
