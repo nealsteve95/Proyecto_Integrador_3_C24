@@ -30,7 +30,7 @@ class HabitacionController extends Controller
         $habitacion->save();
 
         // Redirección a ruta de index
-        return redirect()->route('habitaciones')->with('success', 'Habitacion creada');
+        return redirect()->route('gerente/habitaciones')->with('success', 'Habitacion creada');
     }
     public function delete($id) {
 
@@ -38,7 +38,7 @@ class HabitacionController extends Controller
         Habitacion::destroy($id);
 
         // Redirección a ruta de index
-        return redirect()->route('habitaciones')->with('success', 'Habitacion eliminada');
+        return redirect()->route('gerente/habitaciones')->with('success', 'Habitacion eliminada');
     }
     public function show($id) {
 
@@ -64,6 +64,6 @@ class HabitacionController extends Controller
         $habitacion->save();
 
         // Redireccionamos a la ruta de index
-        return redirect()->route('habitaciones')->with('success', 'Habitacion actualizada');
+        return redirect()->route('gerente/habitaciones')->with('success', 'Habitacion actualizada');
     }
 }

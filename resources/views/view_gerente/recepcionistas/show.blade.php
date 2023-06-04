@@ -77,43 +77,43 @@
                 <div class="card-content">
                     <div class="card-group form-group">
                         <label for="dni">DNI</label>
-                        <input type="number" name="dni" value="{{ $administrador->dni }}" disabled>
+                        <input class="form-input" type="number" name="dni" value="{{ $administrador->dni }}" disabled>
                     </div>
                     <div class="card-group form-group">
                         <label for="nombres">Nombres</label>
-                        <input type="text" name="nombres" value="{{ $administrador->nombres }}" disabled>
+                        <input class="form-input" type="text" name="nombres" value="{{ $administrador->nombres }}" disabled>
                     </div>
                     <div class="card-group form-group">
                         <label for="apellidos">Apellidos</label>
-                        <input type="text" name="apellidos" value="{{ $administrador->apellidos }}" disabled>
+                        <input class="form-input" type="text" name="apellidos" value="{{ $administrador->apellidos }}" disabled>
                     </div>
                     <div class="card-group form-group">
                         <label for="telefono">Telefono</label>
-                        <input type="tel" name="telefono" value="{{ $administrador->telefono }}" disabled>
+                        <input class="form-input" type="tel" name="telefono" value="{{ $administrador->telefono }}" disabled>
                     </div>
                     <div class="card-group form-group">
                         <label for="turno" class="form-label label-radio">Turno</label>
                         <div class="form-radio">
                             <dir class="radio-group form-check-input">
-                                <input disabled type="radio" name="turno" value="mañana"
+                                <input class="form-input" disabled type="radio" name="turno" value="mañana"
                                 @if ($administrador->turno == 'mañana')
                                     checked
                                 @endif><span>Mañana</span>
                             </dir>
                             <div class="radio-group">
-                                <input disabled type="radio" name="turno" value="tarde"
+                                <input class="form-input" disabled type="radio" name="turno" value="tarde"
                                 @if ($administrador->turno == 'tarde')
                                     checked
                                 @endif><span>Tarde</span>
                             </div>
                             <div class="radio-group">
-                                <input disabled type="radio" name="turno" value="noche"
+                                <input class="form-input" disabled type="radio" name="turno" value="noche"
                                 @if ($administrador->turno == 'noche')
                                     checked
                                 @endif><span>Noche</span>
                             </div>
                             <div class="radio-group">
-                                <input disabled type="radio" name="turno" value="finesSemana"
+                                <input class="form-input" disabled type="radio" name="turno" value="finesSemana"
                                 @if ($administrador->turno == 'finesSemana')
                                     checked
                                 @endif><span>Otros</span>
@@ -138,15 +138,15 @@
                 <div class="card-content">
                     <div class="card-group form-group">
                         <label for="correo">Correo</label>
-                        <input type="email" name="correo" value="{{ $administrador->correo }}" disabled>
+                        <input class="form-input" type="email" name="correo" value="{{ $administrador->correo }}" disabled>
                     </div>
                     <div class="card-group form-group">
                         <label for="contrasena">Contraseña</label>
-                        <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" value="{{ $administrador->contrasena }}" disabled>
+                        <input class="form-input" type="password" placeholder="Contraseña" name="contrasena" id="contrasena" value="{{ $administrador->contrasena }}" disabled>
                     </div>
                     <div class="card-group form-group" id="recepUpdate-contraConfirm">
                         <label for="contrasena-confirm">Confirmar Contraseña</label>
-                        <input type="password" placeholder="Confirmar contraseña" name="contrasena-confirm" id="contrasena-confirm" disabled>
+                        <input class="form-input" type="password" placeholder="Confirmar contraseña" name="contrasena-confirm" id="contrasena-confirm" disabled>
                     </div>
                     <div class="card-group form-group buttons">
                         <button class="raise btn-green" id="btn-editUser" type="submit" onclick="showEditRecepUser(event)">Editar campos</button>

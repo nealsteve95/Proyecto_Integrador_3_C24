@@ -64,12 +64,41 @@
     @section('title')
         Habitacion nro {{ $habitacion->nro_habitacion }}
     @endsection
-    @section('app-content-actions')
-        @component('partials/actions')
-            @section('filter-menu')
-            {{-- Aquí las opciones de filtro: <label> <option> </label> --}}
-            @endsection
-        @endcomponent
-    @endsection
+
+    <div class="form-parent card-show-parent">
+        <div class="form">
+            <form class="form-update" action="{{ route('gerente/habitaciones-update', ['id' => $habitacion->id]) }}" method="POST">
+                @method('PUT')
+                @csrf
+                <input type="hidden" name="estado" value="{{ $habitacion->estado }}">
+                <div class="card-header">
+                    <p>Información de habitación</p>
+                </div>
+                <div class="card-content">
+                    <div class="card-group form-group">
+                        <label for="nro_habitacion">Nro de habitación</label>
+                        <input class="form-input" type="number" name="nro_habitacion" value="{{ $habitacion->nro_habitacion }}" disabled>
+                    </div>
+                    <div class="card-group form-group">
+                        <label for="tipo">Tipo</label>
+                        <input class="form-input" type="text" name="tipo" value="{{ $habitacion->tipo }}" disabled>
+                    </div>
+                    <div class="card-group form-group">
+                        <label for="precio">Precio</label>
+                        <input class="form-input" type="number" step="0.01" name="precio" value="{{ $habitacion->precio }}" disabled>
+                    </div>
+                    <div class="card-group form-group">
+                        <label for="caracteristicas">Características</label>
+                        <textarea class="form-input" name="caracteristicas" disabled>{{ $habitacion->caracteristicas }}</textarea>
+                    </div>
+                    <div class="card-group form-group buttons">
+                        <button class="raise btn-green" id="btn-edit" type="submit" onclick="showEditRecep(event)">Editar campos</button>
+                        <button class="raise btn-green" id="btn-edit-store" type="submit" >Guardar cambios</button>
+                        <button class="raise btn-red" id="btn-edit-cancel" type="submit" onclick="showEditRecepDisable(event)">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
 @endsection

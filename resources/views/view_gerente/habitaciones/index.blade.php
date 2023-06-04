@@ -66,10 +66,19 @@
     @endsection
     @section('app-content-actions')
         @component('partials/actions')
+            @section('campos-búsqueda')
+                <option value="nroHabitacion">Nro habitacion</option>
+                <option value="tipo">Tipo</option>
+                <option value="precio">Precio</option>
+                <option value="estado">Estado</option>
+            @endsection
             @section('filter-menu')
             {{-- Aquí las opciones de filtro: <label> <option> </label> --}}
             @endsection
         @endcomponent
+    @endsection
+    @section('button-insert')
+        <a href="{{ route('gerente/habitaciones-showCreate') }}"><button class="app-content-headerButton">Registrar habitación</button></a>
     @endsection
 
     <div class="products-area-wrapper tableView">
@@ -93,27 +102,36 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
                 </button>
             </div>
+            <div class="product-cell price">
+                Accion
+            </div>
         </div>
         {{-- Aquí la lista de habitaciones --}}
         @foreach ($habitaciones as $habitacion)
-        <a href="{{ route('gerente/habitaciones-show', ['id'=>$habitacion->id]) }}">
+        <a class="row-element" href="{{ route('gerente/habitaciones-show', ['id'=>$habitacion->id]) }}">
             <div class="products-row">
-                <div class="product-cell image">
-                    <span>
-                        {{$habitacion->nro_habitacion}}
-                    </span>
+                <div class="product-cell nroHabitacion">
+                    <span class="value-row">{{$habitacion->nro_habitacion}}</span>
                 </div>
-                <div class="product-cell category">
+                <div class="product-cell tipo">
                     <span class="cell-label">Tipo:</span>
-                    {{$habitacion->tipo}}
+                    <span class="value-row">{{$habitacion->tipo}}</span>
                 </div>
-                <div class="product-cell status-cell">
+                <div class="product-cell precio">
                     <span class="cell-label">Precio:</span>
-                    {{$habitacion->precio}}
+                    <span class="value-row">{{$habitacion->precio}}</span>
                 </div>
-                <div class="product-cell sales">
+                <div class="product-cell estado">
                     <span class="cell-label">Estado:</span>
-                    {{$habitacion->estado}}
+                    <span class="value-row status active">{{$habitacion->estado}}</span>
+                </div>
+                <span class="cell-label"><textarea class="form-input" disabled>{{$habitacion->caracteristicas}}</textarea></span>
+                <div class="product-cell action">
+                    <form action="{{ route('gerente/habitaciones-delete', ['id'=>$habitacion->id]) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="raise btn-red">Eliminar</button>
+                    </form>
                 </div>
             </div>
         </a>

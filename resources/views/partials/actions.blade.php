@@ -1,19 +1,23 @@
 <div class="app-content-actions">
-    <input class="search-bar" placeholder="Search..." type="text">
+    <select name="campo-busqueda" id="campoBusqueda" class="form-select">
+        <option value="">-- Campo --</option>
+        @yield('campos-búsqueda')
+    </select>
+    <input id="barraBusqueda" class="search-bar" placeholder="Buscar..." type="text" oninput="search()">
     <div class="app-content-actions-wrapper">
         <div class="filter-button-wrapper">
             <button class="action-button filter jsFilter">
-                <span>Filter</span>
+                <span>Filtro</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
             </button>
             <div class="filter-menu">
                 @yield('filter-menu')
                 <div class="filter-menu-buttons">
                     <button class="filter-button reset">
-                        Reset
+                        Reiniciar
                     </button>
                     <button class="filter-button apply">
-                        Apply
+                        Aplicar
                     </button>
                 </div>
             </div>

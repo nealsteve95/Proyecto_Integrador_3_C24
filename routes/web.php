@@ -45,7 +45,10 @@ Route::get('/gerente/huespedes-show/{id}', [HuespedController::class, 'show'])->
 
 Route::get('/gerente/habitaciones', [HabitacionController::class, 'index']) -> name('gerente/habitaciones');
 Route::get('/gerente/habitaciones-show/{id}', [HabitacionController::class, 'show']) -> name('gerente/habitaciones-show');
+Route::get('/gerente/habitaciones-showCreate', function(){ return view('view_gerente/habitaciones/showCreate'); }) -> name('gerente/habitaciones-showCreate');
+Route::post('/gerente/habitaciones-create', [HabitacionController::class, 'store']) -> name('gerente/habitaciones-create');
 Route::put('/gerente/habitaciones-update/{id}', [HabitacionController::class, 'update']) -> name('gerente/habitaciones-update');
+Route::delete('/gerente/habitaciones-delete/{id}', [HabitacionController::class, 'delete'])->name('gerente/habitaciones-delete');
 
 Route::get('/gerente/recepcionistas', [AdministradoresController::class, 'index']) -> name('gerente/recepcionistas');
 Route::get('/gerente/recepcionistas-show/{id}', [AdministradoresController::class, 'show']) -> name('gerente/recepcionistas-show');

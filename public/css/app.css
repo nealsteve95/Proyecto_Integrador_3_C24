@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500 &display=swap");
 * {
     box-sizing: border-box;
 }
@@ -21,6 +20,7 @@
     --action-color-hover: #6291fd;
     --app-content-secondary-color: #1d283c;
     --filter-reset: #2c394f;
+    --input-radio: #2c394f;
     --filter-shadow: rgba(16, 24, 39, 0.8) 0 6px 12px -2px, rgba(0, 0, 0, 0.3) 0 3px 7px -3px;
 }
 
@@ -34,13 +34,14 @@
     --sidebar-active-link: rgba(195, 207, 244, 1);
     --sidebar-main-color: #1f1c2e;
     --filter-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
-    --filter-reset: #cdcfd3;
+    --input-radio: #cdcfd3;
 }
 
 body,
 html {
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 body {
@@ -61,6 +62,11 @@ button,
     cursor: pointer;
 }
 
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
 form {
     text-decoration: none;
 }
@@ -71,7 +77,7 @@ a {
     cursor: pointer;
 }
 input {
-    transition: color .5s ease-in-out;
+    transition: color 0.5s ease-in-out;
 }
 
 .btn-red {
@@ -117,7 +123,7 @@ input {
     max-height: 100%;
     max-width: 1280px;
     display: flex;
-    overflow: hidden;
+    overflow-y: auto;
     box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
     max-width: 2000px;
     margin: 0 auto;
@@ -126,6 +132,7 @@ input {
 .sidebar {
     flex-basis: 200px;
     max-width: 200px;
+    height: 100%;
     flex-shrink: 0;
     background-color: var(--sidebar);
     display: flex;
@@ -524,7 +531,7 @@ input {
         flex: 0.4;
     }
     .tableView .product-cell.stock,
-    .tableView .product-cell.price {
+    .tableView .product-cell.action {
         flex: 0.2;
     }
 }
@@ -532,7 +539,7 @@ input {
     .tableView .product-cell.stock {
         display: none;
     }
-    .tableView .product-cell.price {
+    .tableView .product-cell.action {
         flex: 0.4;
     }
 }
@@ -599,8 +606,9 @@ input {
     display: none;
 }
 .gridView .products-row {
+    display: grid;
     margin: 8px;
-    width: calc(25% - 16px);
+    min-width: 15rem;
     background-color: var(--app-content-secondary-color);
     padding: 8px;
     border-radius: 4px;
@@ -662,6 +670,10 @@ input {
     align-items: center;
     justify-content: space-between;
 }
+.gridView .product-cell.action {
+    padding: 0.5rem 0.1rem;
+    justify-content: center;
+}
 .gridView .product-cell.image span {
     font-size: 18px;
     line-height: 24px;
@@ -704,7 +716,7 @@ input {
 }
 .form-radio {
     display: grid;
-    background-color: var(--filter-reset);
+    background-color: var(--input-radio);
     height: auto;
     grid-template-columns: repeat(4, 1fr);
     border-radius: 1rem;
@@ -730,7 +742,7 @@ input {
 .radio-group span {
     color: var(--sidebar-main-color);
 }
-.form-group input {
+.form-input {
     font-size: 1rem;
     width: 100%;
     padding: 5px 10px;
@@ -742,11 +754,11 @@ input {
     -webkit-transition: border-color 0.25s ease, box-shadow 0.25s ease;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
-input:focus {
+.form-input:focus {
     outline: 0;
     border-color: #1ab188;
 }
-input:disabled {
+.form-input:disabled {
     color: rgb(135, 135, 135);
 }
 .card-show-parent {
@@ -754,7 +766,7 @@ input:disabled {
     flex-direction: column;
     row-gap: 2rem;
 }
-@media (min-width: 1024px) {
+@media(min-width: 1024px) {
     .card-show-parent {
         display: flex;
         flex-direction: row;
@@ -762,16 +774,18 @@ input:disabled {
         justify-content: space-around;
     }
 }
-.form .card-header p, .form .card-content p{
+.form .card-header p,
+.form .card-content p {
     color: var(--app-content-main-color);
 }
 .card-header {
     font-size: 1.4rem;
     text-align: center;
 }
-.card-group label, .card-contra label {
+.card-group label,
+.card-contra label {
     margin-bottom: 0;
-    padding: .2rem 0;
+    padding: 0.2rem 0;
     text-align: center;
     color: var(--sidebar-main-color);
     background-color: var(--sidebar-hover-link);
@@ -790,12 +804,37 @@ input:disabled {
     flex-direction: column;
     row-gap: 1rem;
 }
-#btn-edit-store, #btn-editUser-store {
+#btn-edit-store,
+#btn-editUser-store {
     display: none;
 }
-#btn-edit-cancel, #btn-editUser-cancel {
+#btn-edit-cancel,
+#btn-editUser-cancel {
     display: none;
 }
 #recepUpdate-contraConfirm {
     display: none;
+}
+
+.form-select {
+    background-color: var(--app-content-secondary-color);
+    border: 1px solid var(--app-content-secondary-color);
+    color: var(--app-content-main-color);
+    font-size: 14px;
+    line-height: 24px;
+    border-radius: 4px;
+    padding: 0 10px 0 10px;
+    margin-right: 1rem;
+    height: 32px;
+    transition: 0.2s;
+}
+.form-select:placeholder {
+    color: var(--app-content-main-color);
+}
+.form-select:hover {
+    border-color: var(--action-color-hover);
+}
+.form-select:focus {
+    outline: none;
+    border-color: var(--action-color);
 }

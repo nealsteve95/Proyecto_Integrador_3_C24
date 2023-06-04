@@ -23,7 +23,7 @@
             <span>Huespedes</span>
         </a>
     </li>
-    <li class="sidebar-list-item ">
+    <li class="sidebar-list-item active">
         <a href="{{ route('gerente/habitaciones') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -45,7 +45,7 @@
             <span>Reportes</span>
         </a>
     </li>
-    <li class="sidebar-list-item active">
+    <li class="sidebar-list-item">
         <a href="{{ route('gerente/recepcionistas') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -62,53 +62,27 @@
         active
     @endsection
     @section('title')
-        Creacion de recepcionista
+        Registro de habitación
     @endsection
     <div class="form-parent">
-        <form action="{{ route('gerente/recepcionistas-create') }}" class="form" method="POST">
+        <form action="{{ route('gerente/habitaciones-create') }}" class="form" method="POST">
             @csrf
+            <input type="hidden" value="Disponible" name="estado">
             <div class="form-group">
-                <input class="form-input" type="number" name="dni" class="form-input" placeholder="Dni" required>
+                <input class="form-input" type="number" name="nro_habitacion" placeholder="Nro de habitación" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="text" placeholder="Nombres" name="nombres" required>
+                <input class="form-input" type="text" placeholder="Tipo" name="tipo" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="text" placeholder="Apellidos" name="apellidos" required>
+                <input class="form-input" type="number" placeholder="Precio" name="precio" step="0.01" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="hidden" value="recepcionista" name="permisos">
-                <label for="turno" class="form-label label-radio">Turno</label>
-                <div class="form-radio">
-                    <dir class="radio-group form-check-input">
-                        <input class="form-input" type="radio" name="turno" value="mañana" checked><span>Mañana</span>
-                    </dir>
-                    <div class="radio-group">
-                        <input class="form-input" type="radio" name="turno" value="tarde"><span>Tarde</span>
-                    </div>
-                    <div class="radio-group">
-                        <input class="form-input" type="radio" name="turno" value="noche"><span>Noche</span>
-                    </div>
-                    <div class="radio-group">
-                        <input class="form-input" type="radio" name="turno" value="finesSemana"><span>Otros</span>
-                    </div>
-                </div>
+                <textarea class="form-input" name="caracteristicas" placeholder="Características" required></textarea>
             </div>
             <div class="form-group">
-                <input class="form-input" type="tel" placeholder="Telefono" name="telefono" required>
-            </div>
-            <div class="form-group">
-                <input class="form-input" type="email" placeholder="Correo electrónico" name="correo" required>
-            </div>
-            <div class="form-group">
-                <input class="form-input" type="password" placeholder="Contraseña" name="contrasena" required>
-            </div>
-            <div class="form-group">
-                <input class="form-input" type="password" placeholder="Confirmar contraseña" name="contrasena-confirm" required>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="raise btn-green">Generar recepcionista</button>
-                <a href="{{ route('gerente/recepcionistas') }}" class="raise btn-red button">Cancelar</a>
+                <button type="submit" class="raise btn-green">Registrar habitación</button>
+                <a href="{{ route('gerente/habitaciones') }}" class="raise btn-red button">Cancelar</a>
             </div>
         </form>
     </div>

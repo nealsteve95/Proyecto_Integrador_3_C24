@@ -1,3 +1,26 @@
+var displayTable = 'flex';
+
+function search() {
+    let inputBusqueda = document.getElementById('barraBusqueda').value;
+    let campoBusqueda = document.getElementById('campoBusqueda').value;
+
+    if(campoBusqueda != "") {
+        let filas = document.getElementsByClassName('products-row');
+
+        for(let i = 0; i < filas.length; i++) {
+            let item = filas.item(i).getElementsByClassName(campoBusqueda);
+            let value = item.item(0).getElementsByClassName('value-row').item(0).textContent;
+
+            if(value.toLowerCase().includes(inputBusqueda.toLowerCase())) {
+                filas.item(i).style.display = displayTable;
+            } else {
+                filas.item(i).style.display = 'none';
+            }
+        }
+    }
+}
+
+
 function validateRecep(e) {
     e.preventDefault();
 }
@@ -56,7 +79,7 @@ function showEditRecep(e) {
     let btn1 = document.getElementById('btn-edit-store');
     let btn2 = document.getElementById('btn-edit-cancel');
     let btn3 = document.getElementById('btn-edit');
-    let campos = document.querySelectorAll(".form-update .card-content .card-group input");
+    let campos = document.querySelectorAll(".form-update .card-content .card-group .form-input");
     campos.forEach((campo) => {
         campo.removeAttribute('disabled');
     })
@@ -70,7 +93,7 @@ function showEditRecepDisable(e) {
     let btn1 = document.getElementById('btn-edit-store');
     let btn2 = document.getElementById('btn-edit-cancel');
     let btn3 = document.getElementById('btn-edit');
-    let campos = document.querySelectorAll(".form-update .card-content .card-group input");
+    let campos = document.querySelectorAll(".form-update .card-content .card-group .form-input");
     campos.forEach((campo) => {
         campo.setAttribute('disabled', true);
     })
@@ -95,6 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector(".grid").classList.add("active");
             document.querySelector(".products-area-wrapper").classList.add("gridView");
             document.querySelector(".products-area-wrapper").classList.remove("tableView");
+            displayTable = 'grid';
+            search()
         });
     }
     let list = document.querySelector(".list");
@@ -104,6 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector(".grid").classList.remove("active");
             document.querySelector(".products-area-wrapper").classList.remove("gridView");
             document.querySelector(".products-area-wrapper").classList.add("tableView");
+            displayTable = 'flex';
+            search()
         });
     }
 
