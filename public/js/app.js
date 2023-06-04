@@ -36,6 +36,11 @@ function sortList(column) {
  *        <option value="campo2">Campo 2</option>
  *        <option value="campo3">Campo 3</option>
  *    endsection
+ * 2. Añadir la clase 'row-element' a la etiqueta <a> del forEach
+ * 3. A cada div de clase .product-cell añadir como clase el nombre del
+ *    campo, ejem: "identificacion", "tipo", "nro_habitacion", etc.
+ * 4. A cada valor extraído de un objeto colocarlo dentro de un <span>
+ *    de clase 'value-row'
  */
 function search() {
     let inputBusqueda = document.getElementById('barraBusqueda').value;
@@ -55,6 +60,14 @@ function search() {
     }
 }
 
+/**
+ *
+ * Función que valida las contraseñas para actualización de credenciales
+ * de recepcionista (si el campo está vacío solo actualiza el correo)
+ *
+ * @param {event} e
+ * @param {*} type
+ */
 function validateRecepUser(e, type) {
     e.preventDefault();
     let contra1 = document.getElementById('contrasena').value;
@@ -71,6 +84,13 @@ function validateRecepUser(e, type) {
     }
 }
 
+/**
+ *
+ * Función que habilita campos para actualización y botones
+ * para recepcionista
+ *
+ * @param {event} e
+ */
 function showEditRecepUser(e) {
     e.preventDefault();
     let btn1 = document.getElementById('btn-editUser-store');
@@ -87,6 +107,14 @@ function showEditRecepUser(e) {
     btn2.style.display = 'initial';
     contraConfirm.style.display = 'flex';
 }
+
+/**
+ *
+ * Función que deshabilita campos de actualización para credenciales de
+ * recepcionista, también oculta botones de actualización.
+ *
+ * @param {event} e
+ */
 function showEditRecepUserDisable(e) {
     e.preventDefault();
     let btn1 = document.getElementById('btn-editUser-store');
@@ -104,6 +132,13 @@ function showEditRecepUserDisable(e) {
     contraConfirm.style.display = 'none';
 }
 
+/**
+ *
+ * Función que habilita campos para modificación de datos de recepcionista
+ * así como botones de actualización.
+ *
+ * @param {*} e
+ */
 function showEditRecep(e) {
     e.preventDefault();
     let btn1 = document.getElementById('btn-edit-store');
@@ -118,6 +153,14 @@ function showEditRecep(e) {
     btn1.style.display = 'initial';
     btn2.style.display = 'initial';
 }
+
+/**
+ *
+ * Función que deshabilita campos de actualización para datos de
+ * recepcionista, también oculta botones de actualización.
+ *
+ * @param {event} e
+ */
 function showEditRecepDisable(e) {
     e.preventDefault();
     let btn1 = document.getElementById('btn-edit-store');
