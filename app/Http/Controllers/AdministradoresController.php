@@ -81,7 +81,10 @@ class AdministradoresController extends Controller
 
         // Actualizamos campos
         $administrador->correo = $request->correo;
-        $administrador->contrasena = $request->contrasena;
+
+        if($request->contrasena != null) {
+            $administrador->contrasena = $request->contrasena;
+        }
 
         // Guardamos objeto
         $administrador->save();

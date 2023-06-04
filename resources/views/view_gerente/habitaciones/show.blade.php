@@ -77,19 +77,19 @@
                 <div class="card-content">
                     <div class="card-group form-group">
                         <label for="nro_habitacion">Nro de habitación</label>
-                        <input class="form-input" type="number" name="nro_habitacion" value="{{ $habitacion->nro_habitacion }}" disabled>
+                        <input class="form-input" type="number" name="nro_habitacion" value="{{ $habitacion->nro_habitacion }}" disabled required>
                     </div>
                     <div class="card-group form-group">
                         <label for="tipo">Tipo</label>
-                        <input class="form-input" type="text" name="tipo" value="{{ $habitacion->tipo }}" disabled>
+                        <input class="form-input" type="text" name="tipo" value="{{ $habitacion->tipo }}" disabled required>
                     </div>
                     <div class="card-group form-group">
                         <label for="precio">Precio</label>
-                        <input class="form-input" type="number" step="0.01" name="precio" value="{{ $habitacion->precio }}" disabled>
+                        <input class="form-input" type="number" step="0.01" name="precio" value="{{ $habitacion->precio }}" disabled required>
                     </div>
                     <div class="card-group form-group">
                         <label for="caracteristicas">Características</label>
-                        <textarea class="form-input" name="caracteristicas" disabled>{{ $habitacion->caracteristicas }}</textarea>
+                        <textarea class="form-input" name="caracteristicas" disabled required>{{ $habitacion->caracteristicas }}</textarea>
                     </div>
                     <div class="card-group form-group buttons">
                         <button class="raise btn-green" id="btn-edit" type="submit" onclick="showEditRecep(event)">Editar campos</button>

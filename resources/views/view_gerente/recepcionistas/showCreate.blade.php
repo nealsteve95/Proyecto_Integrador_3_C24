@@ -65,7 +65,7 @@
         Creacion de recepcionista
     @endsection
     <div class="form-parent">
-        <form action="{{ route('gerente/recepcionistas-create') }}" class="form" method="POST">
+        <form action="{{ route('gerente/recepcionistas-create') }}" class="form form-updateUser" method="POST" onsubmit="validateRecepUser(event, 'create')">
             @csrf
             <div class="form-group">
                 <input class="form-input" type="number" name="dni" class="form-input" placeholder="Dni" required>
@@ -101,10 +101,10 @@
                 <input class="form-input" type="email" placeholder="Correo electrónico" name="correo" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="password" placeholder="Contraseña" name="contrasena" required>
+                <input class="form-input" type="password" placeholder="Contraseña" id="contrasena" name="contrasena" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="password" placeholder="Confirmar contraseña" name="contrasena-confirm" required>
+                <input class="form-input" type="password" placeholder="Confirmar contraseña" id="contrasena-confirm" name="contrasena-confirm" required>
             </div>
             <div class="form-group">
                 <button type="submit" class="raise btn-green">Generar recepcionista</button>

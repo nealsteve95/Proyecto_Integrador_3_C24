@@ -1,6 +1,5 @@
 <div class="app-content-actions">
     <select name="campo-busqueda" id="campoBusqueda" class="form-select">
-        <option value="">-- Campo --</option>
         @yield('campos-búsqueda')
     </select>
     <input id="barraBusqueda" class="search-bar" placeholder="Buscar..." type="text" oninput="search()">

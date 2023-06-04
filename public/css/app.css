@@ -3,6 +3,17 @@
 }
 
 :root {
+    --status-available: #2ba972;
+    --status-available-before: rgba(43, 169, 114, 0.2);
+    --status-reserved: #d9db64;
+    --status-reserved-before: rgba(217, 219, 100, 0.2);
+    --status-busy: #a32d2d;
+    --status-busy-before: rgba(163, 45, 45, 0.2);
+    --status-cleaning: #386f98;
+    --status-cleaning-before: rgba(56, 111, 152, 0.2);
+    --status-notOperational: #6b6666;
+    --status-notOperational-before: rgba(107, 102, 102, 0.2);
+
     --btn-color-delete: #c92323e5;
     --btn-color-delete-light: #f73e3ee5;
     --btn-color-show: #18a011e5;
@@ -577,20 +588,43 @@ input {
     border-radius: 50%;
     margin-right: 4px;
 }
-.status.active {
-    color: #2ba972;
-    background-color: rgba(43, 169, 114, 0.2);
+
+.status.Disponible {
+    color: var(--status-available);
+    background-color: var(--status-available-before);
 }
-.status.active:before {
-    background-color: #2ba972;
+.status.Disponible:before {
+    background-color: var(--status-available);
 }
-.status.disabled {
-    color: #59719d;
-    background-color: rgba(89, 113, 157, 0.2);
+.status.Reservado {
+    color: var(--status-reserved);
+    background-color: var(--status-reserved-before);
 }
-.status.disabled:before {
-    background-color: #59719d;
+.status.Reservado:before {
+    background-color: var(--status-reserved);
 }
+.status.Ocupado {
+    color: var(--status-busy);
+    background-color: var(--status-busy-before);
+}
+.status.Ocupado:before {
+    background-color: var(--status-busy);
+}
+.status.Limpieza {
+    color: var(--status-cleaning);
+    background-color: var(--status-cleaning-before);
+}
+.status.Limpieza:before {
+    background-color: var(--status-available);
+}
+.status.No_Operativo {
+    color: var(--status-notOperational);
+    background-color: var(--status-notOperational-before);
+}
+.status.No_Operativo:before {
+    background-color: var(--status-notOperational);
+}
+
 
 .gridView {
     display: flex;
@@ -608,7 +642,7 @@ input {
 .gridView .products-row {
     display: grid;
     margin: 8px;
-    min-width: 15rem;
+    min-width: 14rem;
     background-color: var(--app-content-secondary-color);
     padding: 8px;
     border-radius: 4px;

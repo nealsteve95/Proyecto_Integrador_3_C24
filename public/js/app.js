@@ -1,43 +1,73 @@
 var displayTable = 'flex';
+var sentidoOrden = 'asc';
 
+function sortList(column) {
+
+    let filas = document.getElementsByClassName('products-row');
+
+    let elementos = {};
+
+    for(let i = 0; i < filas.length; i++) {
+        let item = filas.item(i).getElementsByClassName(column);
+        let value = item.item(0).getElementsByClassName('value-row').item(0).textContent;
+        elementos[value] = filas.item(i);
+    }
+
+    let orden;
+
+    if(sentidoOrden == 'asc') {
+        orden = Object.entries(elementos).sort();
+        sentidoOrden = 'desc';
+    }else {
+        orden = Object.entries(elementos).reverse();
+        sentidoOrden = 'asc';
+    }
+
+    console.log(orden);
+
+}
+
+/**
+ * Función que busca coincidencias con respecto a un campo en el
+ * combo box, modificaciones necesarias para búsqueda en tabla:
+ * 1. Establecer las opciones en el select de la sección "campos-búsqueda"
+ *    section('campos-búsqueda')
+ *        <option value="campo1">Campo 1</option>
+ *        <option value="campo2">Campo 2</option>
+ *        <option value="campo3">Campo 3</option>
+ *    endsection
+ */
 function search() {
     let inputBusqueda = document.getElementById('barraBusqueda').value;
     let campoBusqueda = document.getElementById('campoBusqueda').value;
 
-    if(campoBusqueda != "") {
-        let filas = document.getElementsByClassName('products-row');
+    let filas = document.getElementsByClassName('products-row');
 
-        for(let i = 0; i < filas.length; i++) {
-            let item = filas.item(i).getElementsByClassName(campoBusqueda);
-            let value = item.item(0).getElementsByClassName('value-row').item(0).textContent;
+    for(let i = 0; i < filas.length; i++) {
+        let item = filas.item(i).getElementsByClassName(campoBusqueda);
+        let value = item.item(0).getElementsByClassName('value-row').item(0).textContent;
 
-            if(value.toLowerCase().includes(inputBusqueda.toLowerCase())) {
-                filas.item(i).style.display = displayTable;
-            } else {
-                filas.item(i).style.display = 'none';
-            }
+        if(value.toLowerCase().includes(inputBusqueda.toLowerCase())) {
+            filas.item(i).style.display = displayTable;
+        } else {
+            filas.item(i).style.display = 'none';
         }
     }
 }
 
-
-function validateRecep(e) {
-    e.preventDefault();
-}
-
-function validateRecepUser(e) {
+function validateRecepUser(e, type) {
     e.preventDefault();
     let contra1 = document.getElementById('contrasena').value;
     let contra2 = document.getElementById('contrasena-confirm').value;
-    if(contra1 == contra2 && contra1.length > 8) {
-        // Contraseñas iguales y mayores de 8 caracteres
+
+    if(contra1 == "" && contra2 == "" && type == 'update') {
         document.querySelector('.form-updateUser').submit();
+    } else if(contra1 != contra2) {
+        alert('Contraseñas no son iguales');
+    } else if(contra1.length < 8) {
+        alert('Contraseña muy corta');
     } else {
-        if(contra1.length < 8) {
-            alert('Contraseña muy corta');
-        } else {
-            alert('Contraseñas no son iguales');
-        }
+        document.querySelector('.form-updateUser').submit();
     }
 }
 

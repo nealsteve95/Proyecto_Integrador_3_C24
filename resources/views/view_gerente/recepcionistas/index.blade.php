@@ -34,17 +34,6 @@
         <span>Habitaciones</span>
     </a>
 </li>
-<li class="sidebar-list-item ">
-    <a href="{{ route('gerente/reportes') }}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" class="feather feather-bell">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-        </svg>
-        <span>Reportes</span>
-    </a>
-</li>
 <li class="sidebar-list-item active">
     <a href="{{ route('gerente/recepcionistas') }}">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
@@ -66,8 +55,12 @@
     @endsection
     @section('app-content-actions')
         @component('partials/actions')
-            @section('filter-menu')
-            {{-- Aquí las opciones de filtro: <label> <option> </label> --}}
+            @section('campos-búsqueda')
+                <option value="identificacion">Identificacion</option>
+                <option value="nombres">Nombres</option>
+                <option value="apellidos">Apellidos</option>
+                <option value="turno">Turno</option>
+                <option value="telefono">Telefono</option>
             @endsection
         @endcomponent
     @endsection
@@ -107,28 +100,28 @@
         </div>
         {{-- Aquí la lista de recepcionistas --}}
         @foreach ($recepcionistas as $recepcionista)
-            <a href="{{ route('gerente/recepcionistas-show', ['id'=>$recepcionista->id]) }}">
+            <a class="row-element" href="{{ route('gerente/recepcionistas-show', ['id'=>$recepcionista->id]) }}">
                 <div class="products-row">
-                    <div class="product-cell image">
-                        <span>
+                    <div class="product-cell identificacion">
+                        <span class="value-row">
                             {{$recepcionista->dni}}
                         </span>
                     </div>
-                    <div class="product-cell category">
+                    <div class="product-cell nombres">
                         <span class="cell-label">Nombres:</span>
-                        {{$recepcionista->nombres}}
+                        <span class="value-row">{{$recepcionista->nombres}}</span>
                     </div>
-                    <div class="product-cell status-cell">
+                    <div class="product-cell apellidos">
                         <span class="cell-label">Apellidos:</span>
-                        {{$recepcionista->apellidos}}
+                        <span class="value-row">{{$recepcionista->apellidos}}</span>
                     </div>
-                    <div class="product-cell sales">
+                    <div class="product-cell turno">
                         <span class="cell-label">Turno:</span>
-                        {{$recepcionista->turno}}
+                        <span class="value-row">{{$recepcionista->turno}}</span>
                     </div>
-                    <div class="product-cell stock">
+                    <div class="product-cell telefono">
                         <span class="cell-label">Telefono:</span>
-                        {{$recepcionista->telefono}}
+                        <span class="value-row">{{$recepcionista->telefono}}</span>
                     </div>
                     <div class="product-cell action">
                         <form action="{{ route('gerente/recepcionistas-delete', ['id'=>$recepcionista->id]) }}" method="POST">

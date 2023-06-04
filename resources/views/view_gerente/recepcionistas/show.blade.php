@@ -77,19 +77,19 @@
                 <div class="card-content">
                     <div class="card-group form-group">
                         <label for="dni">DNI</label>
-                        <input class="form-input" type="number" name="dni" value="{{ $administrador->dni }}" disabled>
+                        <input class="form-input" type="number" name="dni" value="{{ $administrador->dni }}" disabled required>
                     </div>
                     <div class="card-group form-group">
                         <label for="nombres">Nombres</label>
-                        <input class="form-input" type="text" name="nombres" value="{{ $administrador->nombres }}" disabled>
+                        <input class="form-input" type="text" name="nombres" value="{{ $administrador->nombres }}" disabled required>
                     </div>
                     <div class="card-group form-group">
                         <label for="apellidos">Apellidos</label>
-                        <input class="form-input" type="text" name="apellidos" value="{{ $administrador->apellidos }}" disabled>
+                        <input class="form-input" type="text" name="apellidos" value="{{ $administrador->apellidos }}" disabled required>
                     </div>
                     <div class="card-group form-group">
                         <label for="telefono">Telefono</label>
-                        <input class="form-input" type="tel" name="telefono" value="{{ $administrador->telefono }}" disabled>
+                        <input class="form-input" type="tel" name="telefono" value="{{ $administrador->telefono }}" disabled required>
                     </div>
                     <div class="card-group form-group">
                         <label for="turno" class="form-label label-radio">Turno</label>
@@ -122,14 +122,14 @@
                     </div>
                     <div class="card-group form-group buttons">
                         <button class="raise btn-green" id="btn-edit" type="submit" onclick="showEditRecep(event)">Editar campos</button>
-                        <button class="raise btn-green" id="btn-edit-store" type="submit" >Guardar cambios</button>
+                        <button class="raise btn-green" id="btn-edit-store" type="submit">Guardar cambios</button>
                         <button class="raise btn-red" id="btn-edit-cancel" type="submit" onclick="showEditRecepDisable(event)">Cancelar</button>
                     </div>
                 </div>
             </form>
         </div>
         <div class="form">
-            <form class="form-updateUser" action="{{ route('gerente/recepcionistas-updateUser', ['id' => $administrador->id]) }}" method="POST">
+            <form onsubmit="validateRecepUser(event, 'update')" class="form-updateUser" action="{{ route('gerente/recepcionistas-updateUser', ['id' => $administrador->id]) }}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="card-header">
@@ -138,11 +138,11 @@
                 <div class="card-content">
                     <div class="card-group form-group">
                         <label for="correo">Correo</label>
-                        <input class="form-input" type="email" name="correo" value="{{ $administrador->correo }}" disabled>
+                        <input class="form-input" type="email" name="correo" value="{{ $administrador->correo }}" disabled required>
                     </div>
                     <div class="card-group form-group">
                         <label for="contrasena">Contraseña</label>
-                        <input class="form-input" type="password" placeholder="Contraseña" name="contrasena" id="contrasena" value="{{ $administrador->contrasena }}" disabled>
+                        <input class="form-input" type="password" placeholder="Contraseña" name="contrasena" id="contrasena" disabled>
                     </div>
                     <div class="card-group form-group" id="recepUpdate-contraConfirm">
                         <label for="contrasena-confirm">Confirmar Contraseña</label>
@@ -150,7 +150,7 @@
                     </div>
                     <div class="card-group form-group buttons">
                         <button class="raise btn-green" id="btn-editUser" type="submit" onclick="showEditRecepUser(event)">Editar campos</button>
-                        <button class="raise btn-green" id="btn-editUser-store" type="submit" onclick="validateRecepUser(event)">Guardar cambios</button>
+                        <button class="raise btn-green" id="btn-editUser-store" type="submit">Guardar cambios</button>
                         <button class="raise btn-red" id="btn-editUser-cancel" type="submit" onclick="showEditRecepUserDisable(event)">Cancelar</button>
                     </div>
                 </div>
