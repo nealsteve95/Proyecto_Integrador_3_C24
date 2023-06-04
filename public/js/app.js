@@ -1,29 +1,53 @@
 var displayTable = 'flex';
 var sentidoOrden = 'asc';
 
+/**
+ *
+ * Función que ordena las filas de la tabla con respecto a un campo
+ * requisitos:
+ * - Añadir a los divs de clase product-cell con el nombre del campo
+ *   de cada fila, ejem: 'nro_habitacion', 'nombres', etc.
+ * - Dentro de dichos divs insertar a los valores dentro de un span con
+ *   nombre de clase igual al nombre del campo, ejem: 'nro_habitacion'.
+ * - A cada boton de clase sort-button en el header de la tabla añadir
+ *   el evento: onclick="sortList(<campo>)" donde el campo sería así
+ *   como en los anteriores puntos, ejem: 'nro_habitacion'.
+ *
+ * @param {string} column
+ */
 function sortList(column) {
 
     let filas = document.getElementsByClassName('products-row');
 
-    let elementos = {};
+    let elementos = [];
 
     for(let i = 0; i < filas.length; i++) {
         let item = filas.item(i).getElementsByClassName(column);
         let value = item.item(0).getElementsByClassName('value-row').item(0).textContent;
-        elementos[value] = filas.item(i);
+        elementos.push([value, filas.item(i)]);
     }
 
     let orden;
 
     if(sentidoOrden == 'asc') {
-        orden = Object.entries(elementos).sort();
+        orden = elementos.sort((a, b) => a[0].localeCompare(b[0]));
         sentidoOrden = 'desc';
     }else {
-        orden = Object.entries(elementos).reverse();
+        orden = elementos.sort((a, b) => b[0].localeCompare(a[0]));
         sentidoOrden = 'asc';
     }
 
-    console.log(orden);
+    // Removemos todas las filas actuales de la tabla
+    let filas_parent = document.querySelector('.tableView');
+
+    filas = filas_parent.querySelectorAll('.row-element');
+
+    filas.forEach((fila) => fila.remove());
+
+    // Insertamos nuevas filas ordenadas
+    orden.forEach((fila) => {
+        filas_parent.appendChild(fila[1]);
+    })
 
 }
 
