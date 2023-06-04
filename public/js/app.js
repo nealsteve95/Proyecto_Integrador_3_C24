@@ -17,7 +17,7 @@ var sentidoOrden = 'asc';
  */
 function sortList(column) {
 
-    let filas = document.getElementsByClassName('products-row');
+    let filas = document.getElementsByClassName('row-element');
 
     let elementos = [];
 
