@@ -65,19 +65,19 @@
         Creacion de recepcionista
     @endsection
     <div class="form-parent">
-        <form action="{{ route('gerente/recepcionistas-create') }}" class="form form-updateUser" method="POST" onsubmit="validateRecepUser(event, 'create')">
+        <form action="{{ url('api/register') }}" class="form form-updateUser" method="POST" onsubmit="validateRecepUser(event, 'create')">
             @csrf
             <div class="form-group">
                 <input class="form-input" type="number" name="dni" class="form-input" placeholder="Dni" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="text" placeholder="Nombres" name="nombres" required>
+                <input class="form-input" type="text" placeholder="Nombres" name="name" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="text" placeholder="Apellidos" name="apellidos" required>
+                <input class="form-input" type="text" placeholder="Apellidos" name="lastName" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="hidden" value="recepcionista" name="permisos">
+                <input class="form-input" type="hidden" value="admin" name="role">
                 <label for="turno" class="form-label label-radio">Turno</label>
                 <div class="form-radio">
                     <dir class="radio-group form-check-input">
@@ -95,13 +95,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <input class="form-input" type="tel" placeholder="Telefono" name="telefono" required>
+                <input class="form-input" type="tel" placeholder="Telefono" name="phone" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="email" placeholder="Correo electrónico" name="correo" required>
+                <input class="form-input" type="email" placeholder="Correo" name="email" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="password" placeholder="Contraseña" id="contrasena" name="contrasena" required>
+                <input class="form-input" type="password" placeholder="Contraseña" id="contrasena" name="password" required>
             </div>
             <div class="form-group">
                 <input class="form-input" type="password" placeholder="Confirmar contraseña" id="contrasena-confirm" name="contrasena-confirm" required>

@@ -109,11 +109,11 @@
                     </div>
                     <div class="product-cell nombres">
                         <span class="cell-label">Nombres:</span>
-                        <span class="value-row">{{$recepcionista->nombres}}</span>
+                        <span class="value-row">{{$recepcionista->name}}</span>
                     </div>
                     <div class="product-cell apellidos">
                         <span class="cell-label">Apellidos:</span>
-                        <span class="value-row">{{$recepcionista->apellidos}}</span>
+                        <span class="value-row">{{$recepcionista->lastName}}</span>
                     </div>
                     <div class="product-cell turno">
                         <span class="cell-label">Turno:</span>
@@ -121,7 +121,7 @@
                     </div>
                     <div class="product-cell telefono">
                         <span class="cell-label">Telefono:</span>
-                        <span class="value-row">{{$recepcionista->telefono}}</span>
+                        <span class="value-row">{{$recepcionista->phone}}</span>
                     </div>
                     <div class="product-cell action">
                         <form action="{{ route('gerente/recepcionistas-delete', ['id'=>$recepcionista->id]) }}" method="POST">
