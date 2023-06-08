@@ -21,7 +21,7 @@ class HabitacionController extends Controller
 
         // Estableciendo datos
         $habitacion->nro_habitacion = $request->nro_habitacion;
-        $habitacion->tipo = $request->tipo;
+        $habitacion->tipo_habitacion = $request->tipo;
         $habitacion->precio = $request->precio;
         $habitacion->estado = $request->estado;
         $habitacion->caracteristicas = $request->caracteristicas;

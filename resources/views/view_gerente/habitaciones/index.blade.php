@@ -104,7 +104,7 @@
                 </div>
                 <div class="product-cell tipo">
                     <span class="cell-label">Tipo:</span>
-                    <span class="value-row">{{$habitacion->tipo}}</span>
+                    <span class="value-row">{{$habitacion->tipo_habitacion}}</span>
                 </div>
                 <div class="product-cell precio">
                     <span class="cell-label">Precio:</span>

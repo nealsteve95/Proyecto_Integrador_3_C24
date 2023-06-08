@@ -81,7 +81,7 @@
                     </div>
                     <div class="card-group form-group">
                         <label for="tipo">Tipo</label>
-                        <input class="form-input" type="text" name="tipo" value="{{ $habitacion->tipo }}" disabled required>
+                        <input class="form-input" type="text" name="tipo" value="{{ $habitacion->tipo_habitacion }}" disabled required>
                     </div>
                     <div class="card-group form-group">
                         <label for="precio">Precio</label>
