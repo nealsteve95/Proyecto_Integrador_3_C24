@@ -2,15 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\Administrador;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Administrador;
 use Illuminate\Support\Facades\Hash;
 
-class DatabaseSeeder extends Seeder
+
+class adminSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */

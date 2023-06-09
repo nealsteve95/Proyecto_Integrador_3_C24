@@ -44,24 +44,24 @@
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
   </head>
   <body>
- 
+
     <div class="main">
       <div class="container a-container" id="a-container">
         <img class="user"src="{{asset('assets/usuario.png')}}">
         <form class="form" id="a-form" method="post" action="{{url('api/login')}}">
           @csrf
           <h2 class="form_title title">Iniciar Sesión</h2>
-          
-          <input class="form__input" type="email" placeholder="Correo" name="email" required >
+
+          <input class="form__input" type="email" placeholder="Correo" name="correo" required >
           <div class="input-container">
-            <input class="form__input" type="password" placeholder="Contraseña" name="password" id="password" required>
+            <input class="form__input" type="password" placeholder="Contraseña" name="contrasena" id="contrasena" required>
             <button class="show-password" type="button" onclick="showPassword()" >
               <i class="fas fa-eye"></i>
             </button>
           </div>
           <script>
             function showPassword() {
-              var passwordInput = document.getElementById("password");
+              var passwordInput = document.getElementById("contrasena");
               if (passwordInput.type === "password") {
                 passwordInput.type = "text";
               } else {

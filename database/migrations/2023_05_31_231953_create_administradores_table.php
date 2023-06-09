@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('Administradores', function (Blueprint $table) {
             $table->id();
-            $table->enum('role',['admin','gerente'])->default('admin');
+            $table->enum('rol',['admin','gerente'])->default('admin');
             $table->timestamps();
-            $table->string('email')->unique();
+            $table->string('correo')->unique();
             $table->rememberToken();
         });
     }

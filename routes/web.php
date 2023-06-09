@@ -38,25 +38,24 @@ use App\Http\Controllers\AdminHomeController;
 
 
 // Faltan rutas para los reportes
-Route::get('/login',function(){ 
+Route::get('/login',function(){
     return view("login");}
     ) -> name("login");
 Route::middleware(['custom.auth'])->group(function () {
     // Rutas para vista de gerente
-    
     Route::get('/gerente/home', function(){ return view('view_gerente/index'); }) -> name('gerente/home')->middleware('check');
     // Podrían ir más rutas para el home
-    
+
     Route::get('/gerente/huespedes', [HuespedController::class, 'index']) -> name('gerente/huespedes')->middleware('check');;
     Route::get('/gerente/huespedes-show/{id}', [HuespedController::class, 'show'])->name('gerente/huespedes-show')->middleware('check');;
-    
+
     Route::get('/gerente/habitaciones', [HabitacionController::class, 'index']) -> name('gerente/habitaciones')->middleware('check');;
     Route::get('/gerente/habitaciones-show/{id}', [HabitacionController::class, 'show']) -> name('gerente/habitaciones-show')->middleware('check');;
     Route::get('/gerente/habitaciones-showCreate', function(){ return view('view_gerente/habitaciones/showCreate'); }) -> name('gerente/habitaciones-showCreate')->middleware('check');;
     Route::post('/gerente/habitaciones-create', [HabitacionController::class, 'store']) -> name('gerente/habitaciones-create')->middleware('check');;
     Route::put('/gerente/habitaciones-update/{id}', [HabitacionController::class, 'update']) -> name('gerente/habitaciones-update')->middleware('check');;
     Route::delete('/gerente/habitaciones-delete/{id}', [HabitacionController::class, 'delete'])->name('gerente/habitaciones-delete')->middleware('check');;
-    
+
     Route::get('/gerente/recepcionistas', [AdministradoresController::class, 'index']) -> name('gerente/recepcionistas')->middleware('check');;
     Route::get('/gerente/recepcionistas-show/{id}', [AdministradoresController::class, 'show']) -> name('gerente/recepcionistas-show')->middleware('check');;
     Route::put('/gerente/recepcionistas-update/{id}', [AdministradoresController::class, 'update']) -> name('gerente/recepcionistas-update')->middleware('check');;

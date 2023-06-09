@@ -18,7 +18,7 @@ class AdministradoresController extends Controller
     public function index() {
 
         // Obtenemos todos los administradores
-        $recepcionistas = Administrador::where('role', 'admin')->get();
+        $recepcionistas = Administrador::where('rol', 'admin')->get();
 
         // Redirecciona a la vista index con todos los administradores para listarlos
         return view('view_gerente.recepcionistas.index', ['recepcionistas' => $recepcionistas]);
@@ -26,14 +26,15 @@ class AdministradoresController extends Controller
     public function store(Request $request) {
         $administrador = new Administrador;
 
-        $administrador->name = $request->nombres;
-        $administrador->lastName = $request->apellidos;
+        $administrador->nombres = $request->nombres;
+        $administrador->apellidos = $request->apellidos;
         $administrador->turno = $request->turno;
-        $administrador->phone = $request->telefono;
-        $administrador->email = $request->correo;
+        $administrador->telefono = $request->telefono;
+        $administrador->correo = $request->correo;
         $administrador->dni = $request->dni;
-        $administrador->password = $request->contrasena;
-        $administrador->role = $request->permisos;
+        $administrador->contrasena = $request->contrasena;
+        $administrador->rol = $request->rol;
+
 
         $administrador->save();
 

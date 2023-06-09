@@ -19,19 +19,19 @@ class checkAuth
     {
         //$ruta=$request->path();
         if($request->is('gerente/*')){
-            if(Auth::check() && Auth::user()->role=="gerente"){
+            if(Auth::check() && Auth::user()->rol=="gerente"){
                 return $next($request);
             }else{
                 return redirect()->back()->with("error","No es tu rol");
             }
         }else if($request->is('administrador/*')){
-            if(Auth::check() && Auth::user()->role=="admin"){
+            if(Auth::check() && Auth::user()->rol=="admin"){
                 return $next($request);
             }else{
                 return redirect()->back()->with("error","No es tu rol");
             }
         }
 
-        
+
     }
 }

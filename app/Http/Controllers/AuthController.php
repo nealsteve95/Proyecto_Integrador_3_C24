@@ -16,10 +16,10 @@ class AuthController extends Controller
     //
     public function register(Request $req){
         $validator=Validator::make($req->all(),[
-            "name"=>"required|string|max:255",
-            "email"=>"required|string|email|max:255|unique:users",
-            "password"=>"required|string|min:8",
-            "role"=>"required|string|min:4",
+            "nombres"=>"required|string|max:255",
+            "correo"=>"required|string|email|max:255|unique:users",
+            "contrasena"=>"required|string|min:8",
+            "rol"=>"required|string|min:4",
         ]);
 
         if($validator->fails()){
@@ -28,13 +28,13 @@ class AuthController extends Controller
 
         $user=Administrador::create(
             [
-                "name"=>$req->name,
-                "email"=>$req->email,
-                "password"=>Hash::make($req->password),
-                "role"=>$req->role,
-                "phone"=>$req->phone,
+                "nombres"=>$req->nombres,
+                "correo"=>$req->correo,
+                "contrasena"=>Hash::make($req->contrasena),
+                "rol"=>$req->rol,
+                "telefono"=>$req->telefono,
                 "turno"=>$req->turno,
-                "lastName"=>$req->lastName,
+                "apellidos"=>$req->apellidos,
                 "dni"=>$req->dni,
 
             ]
@@ -46,39 +46,37 @@ class AuthController extends Controller
     }
 
     public function login(Request $req){
-         if(!Auth::attempt($req->only("email","password"))){
-            
+        if(!Auth::attempt($req->only('correo','contrasena'))){
             return redirect()->route('login')->with('error', 'Credenciales Incorrectas');;
-        } 
-        $user=Administrador::where("email",$req["email"])->firstOrFail();
-
+        }
+        $user=Administrador::where("correo",$req["correo"])->firstOrFail();
         $token=$user->createToken("token")->plainTextToken;
         $cookie = cookie('token', $token, 60);
-        $role=$user->role;
-        if($role=="admin"){
+        $rol=$user->rol;
+
+        if($rol=="admin"){
             $url = route('administrador/home');
             return redirect($url)->withCookie(cookie('token', $cookie, $minutes = 60, $path = null, $domain = null, $secure = true, $httpOnly = true));
         }else{
             $url = route('gerente/home');
             return redirect($url)->withCookie(cookie('token', $cookie, $minutes = 60, $path = null, $domain = null, $secure = true, $httpOnly = true));
         }
-
     }
 
     public function logout(){
         //borrar todos los token
         /* $request->user()->currentAccessToken()->delete();
-        
+
         return [
             "message"=>"Haz cerrado sesión correctamente y se borro tu token"
         ]; */
-    
+
         // Borrar los datos de autenticación del guardia
         $guard = Auth::guard('sanctum');
 
         // Obtener el usuario autenticado
         $user = $guard->user();
-    
+
         if ($user) {
             // Borrar todos los tokens de API del usuario
             $user->tokens()->delete();

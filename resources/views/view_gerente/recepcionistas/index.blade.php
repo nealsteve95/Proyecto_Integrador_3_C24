@@ -73,11 +73,13 @@
         <div class="products-header">
             <div class="product-cell image">
                 Identificacion
-                <button class="sort-button">
+                <button class="sort-button" onclick="sortList('identificacion')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
                 </button>
             </div>
-            <div class="product-cell category">Nombres<button class="sort-button">
+            <div class="product-cell category">
+                Nombres
+                <button class="sort-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
                 </button>
             </div>
@@ -109,11 +111,11 @@
                     </div>
                     <div class="product-cell nombres">
                         <span class="cell-label">Nombres:</span>
-                        <span class="value-row">{{$recepcionista->name}}</span>
+                        <span class="value-row">{{$recepcionista->nombres}}</span>
                     </div>
                     <div class="product-cell apellidos">
                         <span class="cell-label">Apellidos:</span>
-                        <span class="value-row">{{$recepcionista->lastName}}</span>
+                        <span class="value-row">{{$recepcionista->apellidos}}</span>
                     </div>
                     <div class="product-cell turno">
                         <span class="cell-label">Turno:</span>
@@ -121,7 +123,7 @@
                     </div>
                     <div class="product-cell telefono">
                         <span class="cell-label">Telefono:</span>
-                        <span class="value-row">{{$recepcionista->phone}}</span>
+                        <span class="value-row">{{$recepcionista->telefono}}</span>
                     </div>
                     <div class="product-cell action">
                         <form action="{{ route('gerente/recepcionistas-delete', ['id'=>$recepcionista->id]) }}" method="POST">
