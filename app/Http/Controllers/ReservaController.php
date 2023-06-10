@@ -15,7 +15,9 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        //
+        $reservas = Reserva::all();
+
+        return response()->json($reservas);
     }
 
     /**
@@ -59,8 +61,9 @@ class ReservaController extends Controller
             "tipo_habitacion_reserva"=>"required|string",
         ]);
         if($validator->fails()){
-            return response()->json($validator->errors());
-        } 
+            return response()->json(["message" => "error en la reserva
+            DESDE LA CUEVA", "ERROR"=> $validator->errors(), "status" => 200]);
+        }
         $dataIdentificacion=[
             "tipo_identificacion"=>$request->tipo_identificacion_huesped,
             "identificacion_huesped"=>$request->identificacion_huesped
@@ -102,7 +105,10 @@ class ReservaController extends Controller
         $reserva->datosHuesped=$data["datosHuesped"];
         $reserva->datosReserva=$data["datosReserva"];
         $reserva->save();
-        return response()->json(["data"=>$data]);
+        return response()->json([
+            "message"=>"RESERVA CORRECTA DESDE LA CUEVA",
+            "status"=>200,
+        ]);
     }
 
     /**

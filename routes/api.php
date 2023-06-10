@@ -19,6 +19,7 @@ use App\Http\Controllers\ReservaController;
 Route::post("/register",[AuthController::class,"register" ])->name("/register");
 Route::post("/login",[AuthController::class,"login" ]);
 Route::post("/reserva",[ReservaController::class,"store" ]);
+Route::get("/reserva",[ReservaController::class,"index" ])->name('reserva');
 Route::get("/habitaciones",[HabitacionesApiController::class,"index" ]);
 
 
@@ -26,7 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::middleware(['auth:sanctum'])->group(function(){
-    
+
     Route::get("/logout",[AuthController::class,"logout"]);
 
 });

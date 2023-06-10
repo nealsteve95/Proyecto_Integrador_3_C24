@@ -27,7 +27,7 @@ class HabitacionesSeeder extends Seeder
                 "precio" => 160.00,
                 "estado" => "Libre",
                 "caracteristicas" => "Televisión, Baño privado, 1 Cama",
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 202,
@@ -36,7 +36,7 @@ class HabitacionesSeeder extends Seeder
                 "precio" => 140.00,
                 "estado" => "Libre",
                 "caracteristicas" => "Televisión, Baño privado, 1 Cama",
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 203,
@@ -45,7 +45,7 @@ class HabitacionesSeeder extends Seeder
                 "precio" => 140.00,
                 "estado" => "Libre",
                 "caracteristicas" => "Televisión, Baño privado, 1 Cama",
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
              [
                  "nro_habitacion" => 204,
@@ -57,7 +57,7 @@ class HabitacionesSeeder extends Seeder
                  "cant_reservas" => [
                      ""
                  ],
-                 "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                 "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
              ],
              [
                  "nro_habitacion" => 205,
@@ -69,7 +69,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 206,
@@ -81,7 +81,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 301,
@@ -93,7 +93,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 302,
@@ -105,7 +105,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 303,
@@ -117,7 +117,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 304,
@@ -129,7 +129,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 305,
@@ -141,7 +141,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     "B1"
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 401,
@@ -153,7 +153,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 402,
@@ -165,7 +165,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 403,
@@ -177,7 +177,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 404,
@@ -189,7 +189,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 405,
@@ -201,7 +201,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 406,
@@ -213,7 +213,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 501,
@@ -225,7 +225,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     "B2"
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 502,
@@ -237,7 +237,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 503,
@@ -249,7 +249,7 @@ class HabitacionesSeeder extends Seeder
                 "cant_reservas" => [
                     ""
                 ],
-                "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
             ],
             [
                 "nro_habitacion" => 504,
@@ -261,7 +261,7 @@ class HabitacionesSeeder extends Seeder
                  "cant_reservas" => [
                      ""
                  ],
-                 "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                 "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
              ],
              [
                  "nro_habitacion" => 505,
@@ -273,7 +273,7 @@ class HabitacionesSeeder extends Seeder
                  "cant_reservas" => [
                      ""
                  ],
-                 "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                 "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
              ],
              [
                  "nro_habitacion" => 506,
@@ -285,9 +285,9 @@ class HabitacionesSeeder extends Seeder
                  "cant_reservas" => [
                      ""
                  ],
-                 "imagen"=>"https://proyecto--asistencia.000webhostapp.com/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg"
+                 "imagen"=>"https://image-tc.galaxy.tf/wijpeg-axw5v17qr09qa28z5mfpaam09/delfines-hotel-peru-lima-accommodation-superior-room-tripadvisor-booking-bed_standard.jpg?crop=67%2C0%2C1067%2C800"
              ],
-        ];        
+        ];
         habitacion::insert($datahabitacion);
     }
 }
