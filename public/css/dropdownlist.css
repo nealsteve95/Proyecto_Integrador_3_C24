@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+.dropdown-main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+  margin: 0 50px;
+}
+
+.dropdown-toggle {
+  padding: 10px 100px;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f9f9f9;
+  padding: 10px 20px 0px;
+  display: none;
+  list-style-type: none;
+  margin: 0;
+  z-index: 1;
+}
+
+.dropdown-list li {
+  cursor: pointer;
+}
+
+.dropdown-list li:hover {
+  background-color: #cf4e4e;
+}
+
+.option-icon {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+
+.dropdown-list li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.option-icon {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+
+.option-text {
+  margin-left: 10px;
+}
+
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.dropdown-list {
+  animation-duration: 0.5s; /* Duración de la animación */
+  animation-fill-mode: forwards; /* Mantener el estado final de la animación */
+}
+
+.dropdown-list.show {
+  animation-name: slideDown; /* Animación al mostrar */
+}
+
+.dropdown-list.hide {
+  animation-name: slideUp; /* Animación al ocultar */
+}

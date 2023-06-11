@@ -11,7 +11,7 @@
         <span>Home</span>
     </a>
 </li>
-<li class="sidebar-list-item ">
+{{-- <li class="sidebar-list-item ">
     <a href="{{ route('gerente/huespedes') }}">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -22,7 +22,7 @@
         </svg>
         <span>Huespedes</span>
     </a>
-</li>
+</li> --}}
 <li class="sidebar-list-item ">
     <a href="{{ route('gerente/habitaciones') }}">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"

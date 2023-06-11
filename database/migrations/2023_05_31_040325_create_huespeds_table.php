@@ -20,6 +20,13 @@ return new class extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->integer('telefono');
+            $table->string('sexo');
+            $table->datetime('fecha_nacimiento');
+            $table->string('nacionalidad');
+            $table->string('region_direccion');
+            $table->integer('telefono');
+            $table->string('correo');
+            $table->json('empresa');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controladores (no tocar)
 use App\Http\Controllers\HuespedController;
+use App\Http\Controllers\Huesped_R_Controller;
 use App\Http\Controllers\HabitacionController;
 use App\Http\Controllers\AdministradoresController;
 use App\Http\Controllers\CheckinController;
@@ -62,3 +63,17 @@ Route::post('/gerente/recepcionistas-create', [AdministradoresController::class,
 Route::get('/gerente/reportes', function() { return view('view_gerente/reportes/index'); }) -> name('gerente/reportes');
 
 // Rutas para vista de recepcionista
+Route::get('/recepcionista/home', function(){ return view('view_recepcionista/index'); }) -> name('recepcionista/home');
+
+Route::get('/recepcionista/habitaciones', [HabitacionController::class, 'index2']) -> name('recepcionista/habitaciones');
+Route::get('/recepcionista/habitaciones-show/{id}', [HabitacionController::class, 'show2']) -> name('recepcionista/habitaciones-show');
+Route::put('/recepcionista/habitaciones-update/{id}', [HabitacionController::class, 'update2']) -> name('recepcionista/habitaciones-update');
+
+
+Route::get('/recepcionista/huespedes', [Huesped_R_Controller::class, 'index']) -> name('recepcionista/huespedes');
+Route::get('/recepcionista/huespedes-show/{id}', [Huesped_R_Controller::class, 'show']) -> name('recepcionista/huespedes-show');
+Route::put('/recepcionista/huespedes-update/{id}', [Huesped_R_Controller::class, 'update']) -> name('recepcionista/huespedes-update');
+Route::put('/recepcionista/huespedes-updateEmpresa/{id}', [Huesped_R_Controller::class, 'updateEmpresa']) -> name('recepcionista/huespedes-updateEmpresa');
+Route::delete('/recepcionista/huespedes-delete/{id}', [Huesped_R_Controller::class, 'delete']) -> name('recepcionista/huespedes-delete');
+Route::get('/recepcionista/huespedes-showCreate', function(){ return view('view_recepcionista/huespedes/showCreate'); }) -> name('recepcionista/huespedes-showCreate');
+Route::post('/recepcionista/huespedes-create', [Huesped_R_Controller::class, 'store']) -> name('recepcionista/huespedes-create');

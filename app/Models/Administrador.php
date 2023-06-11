@@ -9,6 +9,6 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Administrador extends Model
 {
     use HasFactory;
-
+    protected $connection = 'mongodb';
     protected $collection = "Administradores";
 }
