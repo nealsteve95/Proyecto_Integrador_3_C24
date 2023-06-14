@@ -39,8 +39,10 @@ class Authenticate implements AuthenticatesRequests
      */
     public function handle($request, Closure $next, ...$guards)
     {
+        
+        //dd($request->all());
+        $request->header('Authorization', 'Bearer ' . $request->query('token'));
         $this->authenticate($request, $guards);
-
         return $next($request);
     }
 
@@ -55,6 +57,7 @@ class Authenticate implements AuthenticatesRequests
      */
     protected function authenticate($request, array $guards)
     {
+        $request->header('Authorization', 'Bearer ' . $request->query('token'));
         if (empty($guards)) {
             $guards = [null];
         }

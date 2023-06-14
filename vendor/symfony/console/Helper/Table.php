@@ -180,7 +180,7 @@ class Table
     public function setHeaders(array $headers): static
     {
         $headers = array_values($headers);
-        if ($headers && !\is_array($headers[0])) {
+        if (!empty($headers) && !\is_array($headers[0])) {
             $headers = [$headers];
         }
 
@@ -189,9 +189,6 @@ class Table
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function setRows(array $rows)
     {
         $this->rows = [];
@@ -620,7 +617,7 @@ class Table
                 if (!str_contains($cell ?? '', "\n")) {
                     continue;
                 }
-                $escaped = implode("\n", array_map(OutputFormatter::escapeTrailingBackslash(...), explode("\n", $cell)));
+                $escaped = implode("\n", array_map([OutputFormatter::class, 'escapeTrailingBackslash'], explode("\n", $cell)));
                 $cell = $cell instanceof TableCell ? new TableCell($escaped, ['colspan' => $cell->getColspan()]) : $escaped;
                 $lines = explode("\n", str_replace("\n", "<fg=default;bg=default></>\n", $cell));
                 foreach ($lines as $lineKey => $line) {
@@ -804,7 +801,7 @@ class Table
                             $textContent = Helper::removeDecoration($this->output->getFormatter(), $cell);
                             $textLength = Helper::width($textContent);
                             if ($textLength > 0) {
-                                $contentColumns = mb_str_split($textContent, ceil($textLength / $cell->getColspan()));
+                                $contentColumns = str_split($textContent, ceil($textLength / $cell->getColspan()));
                                 foreach ($contentColumns as $position => $content) {
                                     $row[$i + $position] = $content;
                                 }

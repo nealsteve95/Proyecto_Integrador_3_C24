@@ -17,6 +17,11 @@ class EnsureFrontendRequestsAreStateful
      */
     public function handle($request, $next)
     {
+        if ($request->hasCookie('token')) {
+            $token = $request->cookie('token');
+            $request->header('Authorization', 'Bearer ' . $token);
+            
+        }
         $this->configureSecureCookieSessions();
 
         return (new Pipeline(app()))->send($request)->through(static::fromFrontend($request) ? [

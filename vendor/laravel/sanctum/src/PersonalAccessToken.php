@@ -2,7 +2,7 @@
 
 namespace Laravel\Sanctum;
 
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Laravel\Sanctum\Contracts\HasAbilities;
 
 class PersonalAccessToken extends Model implements HasAbilities
@@ -12,9 +12,11 @@ class PersonalAccessToken extends Model implements HasAbilities
      *
      * @var array
      */
+    protected $connection = 'mongodb' ;
     protected $casts = [
         'abilities' => 'json',
         'last_used_at' => 'datetime',
+        'expires_at' => 'datetime',
     ];
 
     /**
@@ -26,6 +28,7 @@ class PersonalAccessToken extends Model implements HasAbilities
         'name',
         'token',
         'abilities',
+        'expires_at',
     ];
 
     /**

@@ -47,6 +47,7 @@
     </a>
 </li>
 @endsection
+{{-- Final del sidebar --}}
 @section('app-content')
     @section('activate-habit')
         active
@@ -67,7 +68,7 @@
     @section('button-insert')
         <a href="{{ route('gerente/habitaciones-showCreate') }}"><button class="app-content-headerButton">Registrar habitación</button></a>
     @endsection
-
+{{-- Aqui estan los encabezados de la tabla --}}
     <div class="products-area-wrapper tableView">
         <div class="products-header">
             <div class="product-cell image">
@@ -95,6 +96,7 @@
                 Accion
             </div>
         </div>
+        {{-- Final de los encabezados de la lista --}}
         {{-- Aquí la lista de habitaciones --}}
         @foreach ($habitaciones as $habitacion)
         <a class="row-element" href="{{ route('gerente/habitaciones-show', ['id'=>$habitacion->id]) }}">

@@ -212,7 +212,7 @@ class Flare
     }
 
     /**
-     * @param FlareMiddleware|array<FlareMiddleware>|class-string<FlareMiddleware>|callable $middleware
+     * @param FlareMiddleware|array<FlareMiddleware>|class-string<FlareMiddleware> $middleware
      *
      * @return $this
      */
@@ -299,8 +299,6 @@ class Flare
         if (! is_null($callback)) {
             call_user_func($callback, $report);
         }
-
-        $this->recorder->reset();
 
         $this->sendReportToApi($report);
 
