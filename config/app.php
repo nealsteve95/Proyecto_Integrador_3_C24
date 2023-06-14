@@ -120,7 +120,7 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
-
+    'charset' => 'UTF-8',
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',

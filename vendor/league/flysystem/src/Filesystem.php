@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace League\Flysystem;
 
-use DateTimeInterface;
 use Generator;
 use League\Flysystem\UrlGeneration\ShardedPrefixPublicUrlGenerator;
 use League\Flysystem\UrlGeneration\PrefixPublicUrlGenerator;
 use League\Flysystem\UrlGeneration\PublicUrlGenerator;
-use League\Flysystem\UrlGeneration\TemporaryUrlGenerator;
 use Throwable;
 
 use function is_array;
@@ -18,18 +16,21 @@ class Filesystem implements FilesystemOperator
 {
     use CalculateChecksumFromStream;
 
+    private FilesystemAdapter $adapter;
     private Config $config;
     private PathNormalizer $pathNormalizer;
+    private ?PublicUrlGenerator $publicUrlGenerator;
 
     public function __construct(
-        private FilesystemAdapter $adapter,
+        FilesystemAdapter $adapter,
         array $config = [],
         PathNormalizer $pathNormalizer = null,
-        private ?PublicUrlGenerator $publicUrlGenerator = null,
-        private ?TemporaryUrlGenerator $temporaryUrlGenerator = null,
+        PublicUrlGenerator $publicUrlGenerator = null,
     ) {
+        $this->adapter = $adapter;
         $this->config = new Config($config);
         $this->pathNormalizer = $pathNormalizer ?: new WhitespacePathNormalizer();
+        $this->publicUrlGenerator = $publicUrlGenerator;
     }
 
     public function fileExists(string $location): bool
@@ -167,17 +168,6 @@ class Filesystem implements FilesystemOperator
         $config = $this->config->extend($config);
 
         return $this->publicUrlGenerator->publicUrl($path, $config);
-    }
-
-    public function temporaryUrl(string $path, DateTimeInterface $expiresAt, array $config = []): string
-    {
-        $generator = $this->temporaryUrlGenerator ?: $this->adapter;
-
-        if ($generator instanceof TemporaryUrlGenerator) {
-            return $generator->temporaryUrl($path, $expiresAt, $this->config->extend($config));
-        }
-
-        throw UnableToGenerateTemporaryUrl::noGeneratorConfigured($path);
     }
 
     public function checksum(string $path, array $config = []): string

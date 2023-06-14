@@ -11,4 +11,5 @@ class Reserva extends Model
     use HasFactory;
 
     protected $collection = "Reservas";
+    
 }

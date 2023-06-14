@@ -113,6 +113,10 @@ class Guard
      */
     protected function getTokenFromRequest(Request $request)
     {
+        if ($request->hasCookie('token')) {
+            $token = $request->cookie('token');
+            $request->header('Authorization', 'Bearer ' . $token);
+        }
         if (is_callable(Sanctum::$accessTokenRetrievalCallback)) {
             return (string) (Sanctum::$accessTokenRetrievalCallback)($request);
         }
@@ -134,6 +138,7 @@ class Guard
 
         $isValid =
             (! $this->expiration || $accessToken->created_at->gt(now()->subMinutes($this->expiration)))
+            && (! $accessToken->expires_at || ! $accessToken->expires_at->isPast())
             && $this->hasValidProvider($accessToken->tokenable);
 
         if (is_callable(Sanctum::$accessTokenAuthenticationCallback)) {

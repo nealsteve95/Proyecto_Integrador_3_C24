@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Traits\Macroable;
+use Illuminate\Support\Facades\Auth;
 
 class RequestGuard implements Guard
 {
@@ -71,6 +72,7 @@ class RequestGuard implements Guard
             $this->callback, $credentials['request'], $this->getProvider()
         ))->user());
     }
+
 
     /**
      * Set the current request instance.

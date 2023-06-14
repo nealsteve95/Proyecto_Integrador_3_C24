@@ -192,12 +192,12 @@ input {
     width: 4px;
 }
 @media screen and(max-width: 1024px) {
-    .sidebar {
+     .sidebar {
         display: none;
     }
     .app-container {
         flex-direction: column;
-    }
+    } 
 }
 
 .mode-switch {
@@ -295,11 +295,34 @@ input {
     height: 32px;
     padding: 0 16px;
     transition: 0.2s;
-    cursor: pointer;
+    cursor: pointer;  
+    
 }
+
 .app-content-headerButton:hover {
     background-color: var(--action-color-hover);
 }
+/* Aqui se puede editar el boton de checkin*/
+.app-content-checkinButton{
+    background-color: #2E7D32;
+    color: #fff;
+    font-size: 14px;
+    line-height: 24px;
+    border: none;
+    border-radius: 4px;
+    height: 32px;
+    padding: 0 16px;
+    transition: 0.2s;
+    cursor: pointer;
+    position: absolute;
+    left: 735px;
+    top: 64px;
+}
+
+.app-content-checkinButton:hover{
+    background-color: var(--action-color-hover);
+}
+/* ------------------------------------------*/
 .app-content-actions {
     display: flex;
     justify-content: space-between;
@@ -322,7 +345,7 @@ input {
     .app-content-actions .app-content-actions-wrapper {
         padding-bottom: 16px;
         order: 1;
-    }
+    } 
 }
 
 .search-bar {
@@ -482,7 +505,7 @@ input {
     width: 100%;
     max-height: 100%;
     overflow: auto;
-    padding: 0 4px;
+    padding: 0 4px; 
 }
 
 .tableView .products-header {
@@ -499,6 +522,7 @@ input {
 .tableView .products-row {
     display: flex;
     align-items: center;
+    text-align: center;
     border-radius: 4px;
 }
 .tableView .products-row:hover {
@@ -516,12 +540,47 @@ input {
     display: flex;
     align-items: center;
 }
+
 .tableView .product-cell img {
     width: 32px;
     height: 32px;
     border-radius: 6px;
     margin-right: 6px;
 }
+/*Para poder editar los botones de eliminar y editar de la tabla de reservas*/
+
+#form-editar button[type="submit"] {
+    background-color: #2E7D32;
+    color: #fff;
+    font-size: 14px;
+    line-height: 24px;
+    border: none;
+    border-radius: 4px;
+    height: 32px;
+    padding: 0 16px;
+    transition: 0.2s;
+    cursor: pointer;
+    position: relative;
+    
+
+  }
+  
+#form-eliminar button[type="submit"] {
+    background-color: red;
+    color: #fff;
+    font-size: 14px;
+    line-height: 24px;
+    border: none;
+    border-radius: 4px;
+    height: 32px;
+    padding: 0 16px;
+    transition: 0.2s;
+    cursor: pointer;
+    position: relative;
+    right: -10px;
+  }
+
+/*----------------------------------------------------------------------------*/
 @media screen and(max-width: 780px) {
     .tableView .product-cell {
         font-size: 12px;
@@ -546,12 +605,13 @@ input {
         flex: 0.2;
     }
 }
+
 @media screen and(max-width: 480px) {
     .tableView .product-cell.stock {
-        display: none;
+        /* display: none; */
     }
     .tableView .product-cell.action {
-        flex: 0.4;
+        /* flex: 0.4; */
     }
 }
 .tableView .sort-button {
@@ -571,15 +631,15 @@ input {
     width: 12px;
 }
 .tableView .cell-label {
-    display: none;
+    /* display: none; */
 }
 
 .status {
-    border-radius: 4px;
+    /* border-radius: 4px;
     display: flex;
     align-items: center;
     padding: 4px 8px;
-    font-size: 12px;
+    font-size: 12px; */
 }
 .status:before {
     content: "";
@@ -637,10 +697,10 @@ input {
     }
 }
 .gridView .products-header {
-    display: none;
+    /* display: none; */
 }
 .gridView .products-row {
-    display: grid;
+    /* display: grid;
     margin: 8px;
     min-width: 14rem;
     background-color: var(--app-content-secondary-color);
@@ -648,7 +708,7 @@ input {
     border-radius: 4px;
     cursor: pointer;
     transition: transform 0.2s;
-    position: relative;
+    position: relative; */
 }
 .gridView .products-row:hover {
     transform: scale(1.01);
@@ -659,22 +719,22 @@ input {
 }
 @media screen and(max-width: 1024px) {
     .gridView .products-row {
-        width: calc(33.3% - 16px);
+        /* width: calc(33.3% - 16px); */
     }
 }
 @media screen and(max-width: 820px) {
     .gridView .products-row {
-        width: calc(50% - 16px);
+        /* width: calc(50% - 16px); */
     }
 }
 @media screen and(max-width: 520px) {
-    .gridView .products-row {
+     .gridView .products-row {
         width: 100%;
         margin: 8px 0;
     }
     .gridView .products-row:hover {
         transform: none;
-    }
+    } 
 }
 .gridView .products-row .cell-more-button {
     border: none;
@@ -692,12 +752,12 @@ input {
     background-color: rgba(16, 24, 39, 0.7);
     color: #fff;
     cursor: pointer;
-    display: none;
+    display: none; 
 }
 .gridView .product-cell {
     color: var(--app-content-main-color);
     font-size: 14px;
-    margin-bottom: 8px;
+    margin-bottom: 8px; 
 }
 .gridView .product-cell:not(.image) {
     display: flex;
@@ -872,3 +932,454 @@ input {
     outline: none;
     border-color: var(--action-color);
 }
+
+/*Check box de la pantalla reserva*/
+  #miCuadrado {
+    
+    color: #fff;
+    font-size: 14px;
+    line-height: 24px;
+    border: none;
+    border-radius: 4px;
+    height: 32px;
+    padding: 0 16px;
+    transition: 0.2s;
+    cursor: pointer;
+    position: relative;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1.5);
+  }
+/*Check box de la pantalla reserva*/
+
+
+/*Para el sistema de registro del huesped*/
+section{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /*BEGIN FORM STYLES*/
+  
+  .input-container {
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .input-container:after,
+  .check-box-holder:after {
+      content: "required";
+      position: absolute;
+      right: -150px;
+      top: 0;
+      line-height: 47px;
+      padding: 0 17px;
+      height: 50px;
+      width: calc(100% - 606px);
+      font-size: 12px;
+      font-weight: 300;
+      transition: .5s;
+      color: white;
+      background-color: #e22121;
+  }
+  
+  fieldset.tab.two-butt-tab .input-container:after,
+  fieldset.tab.two-butt-tab .check-box-holder:after {
+      width: calc(100% - 505px);
+  }
+  
+  fieldset.tab.textarea-butt-tab .input-container:after,
+  fieldset.tab.textarea-butt-tab .check-box-holder:after {
+      width: calc(100% - 708px);
+  }
+  
+  .input-container.not-valid.email-not-vaild:after {
+      content: "Email not valid";
+      width: calc(100% - 470px) !important;
+  }
+  
+  .input-container.not-valid:after,
+  .check-box-holder.not-valid:after {
+      right: 0;
+  }
+  
+  .input-container.not-valid.email-not-vaild:after {
+      content: "Email not valid";
+  }
+  
+  #msform {
+      max-width: 755px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+  }
+  
+  #msform fieldset {
+      background: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+      box-sizing: border-box;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+  }
+  
+  /*Hide all except first fieldset*/
+  #msform fieldset:not(:first-of-type) {
+      display: none;
+  }
+  
+  /*inputs*/
+  #msform input,
+  #msform textarea {
+      padding: 17px 17px 17px 70px;
+      height: 50px;
+      border: 1px solid #ccc;
+      border-radius: 0;
+      margin-bottom: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+      color: #2C3E50;
+      font-size: 12px;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -ms-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+  }
+  
+  #msform input:hover,
+  #msform textarea:hover {
+      padding: 17px 17px 17px 82px;
+  }
+  
+  #msform input.fileupload,
+  #msform input.fileupload:hover {
+      padding: 17px 17px 17px 17px;
+  }
+  
+  /*buttons*/
+  #msform .action-button {
+      position: relative;
+      top: -80px;
+      float: right;
+      width: 100px;
+      background: #a98b57;
+      font-weight: bold;
+      color: white;
+      border: 0 none;
+      border-radius: 1px;
+      cursor: pointer;
+      padding: 10px 5px;
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: 300;
+      letter-spacing: 1px;
+      margin-top: 20px;
+  }
+  
+  #msform .action-button:hover,
+  #msform .action-button:focus {
+      padding: 10px 5px;
+      background: #c1974a;
+      transform: scale(1.05);
+  }
+  
+  /*headings*/
+  .fs-title {
+      font-size: 27px;
+      text-transform: none;
+      color: #000000;
+      margin: 30px 0;
+      text-align: center;
+  }
+  
+  .fs-subtitle {
+      font-weight: normal;
+      font-size: 13px;
+      color: #fff;
+      margin-bottom: 20px;
+  }
+  
+  /*progressbar*/
+  #progressbar {
+      margin: 50px auto 20px auto;
+      overflow: hidden;
+      text-align: center;
+      counter-reset: step;
+      padding: 34px 0;
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 10px;
+      border: 1px solid #717171;
+  }
+  
+  #progressbar li {
+      list-style-type: none;
+      color: #0e0e0e;
+      text-transform: uppercase;
+      font-size: 11px;
+      width: 25%;
+      float: left;
+      /* font-weight: 300; */
+      position: relative;
+  }
+  
+  #progressbar li:before {
+      content: counter(step);
+      counter-increment: step;
+      width: 30px;
+      line-height: 30px;
+      display: block;
+      font-size: 15px;
+      color: #fff;
+      background: #dcdbda;
+      border-radius: 50%;
+      margin: 0 auto 5px auto;
+      position: relative;
+      z-index: 1;
+  }
+  
+  /*progressbar connectors*/
+  #progressbar li:after {
+      content: '';
+      width: 100%;
+      height: 2px;
+      background: #dcdbda;
+      position: absolute;
+      left: -50%;
+      top: 14px;
+      z-index: 0;
+  }
+  
+  #progressbar li:first-child:after {
+      /*connector not needed before the first step*/
+      content: none;
+  }
+  
+  /*marking active/completed steps green*/
+  /*The number of the step and the connector before it = green*/
+  #progressbar li.active:before,
+  #progressbar li.active:after {
+      background: #a98b56;
+      color: white;
+  }
+  
+  #msform textarea {
+      height: 180px;
+  }
+  
+  #msform textarea.bigger-textarea {
+      height: 200px;
+  }
+  
+  #msform h4 {
+      color: #fff;
+      margin: 20px 0 15px 0;
+  }
+  
+  #msform h4 i {
+      color: #37ae5f;
+      font-size: 17px;
+      margin-right: 8px;
+  }
+  
+  #msform input.fileupload {
+      background: #fff;
+      border: 0;
+  }
+  
+  #msform input#next-button-1:disabled,
+  #msform input#next-button-2:disabled,
+  #msform input#next-button-3:disabled,
+  #msform input#submit:disabled {
+      opacity: 0.3;
+  }
+  
+  #msform .input-container.half-container {
+      float: left;
+      width: 49%;
+  }
+  
+  #msform .input-container.half-container.half-container-left {
+      margin-right: 2%;
+  }
+  
+  #msform textarea:focus,
+  #msform input:focus,
+  #msform select:focus {
+      outline: none;
+  }
+  
+  #msform .input-container i {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 13px;
+      color: #ffffff;
+      background: #a98c57;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+  }
+  
+  #msform select {
+      width: 100%;
+      padding: 17px 17px 17px 60px !important;
+      height: 50px;
+      text-indent: 62px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #696969;
+      border-radius: 0;
+      border: 0;
+  }
+  
+  #msform p {
+      font-size: 15px;
+      color: #fff;
+      font-weight: 300;
+      margin: 10px 0 10px 0;
+  }
+  
+  #msform .checkbox-styles label {
+      display: inline-block;
+      padding-left: 15px;
+      text-indent: -15px;
+      float: left;
+      box-sizing: border-box;
+      color: #fff;
+      font-weight: 300;
+      font-size: 12px;
+      margin: 20px 0;
+      overflow: hidden;
+      float: left;
+  }
+  
+  #msform .checkbox-styles input {
+      width: 13px;
+      height: 13px;
+      padding: 0;
+      margin: 0;
+      vertical-align: bottom;
+      position: relative;
+      top: -1px;
+      overflow: hidden;
+      margin-right: 9px;
+  }
+  
+  #msform #check-box-holder {
+      border: 1px solid #fff;
+      border: 1px solid #ffffff4d;
+      border-radius: 4px;
+      padding: 23px 23px 13px 23px;
+      margin: 35px 0 25px 0;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  #msform #check-box-holder h4 {
+      margin: 0;
+  }
+  
+  .styled-checkbox {
+      position: absolute;
+      opacity: 0;
+  }
+  
+  .styled-checkbox + label {
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+  }
+  
+  .styled-checkbox + label:before {
+      content: '';
+      margin-right: 10px;
+      display: inline-block;
+      vertical-align: text-top;
+      width: 20px;
+      height: 20px;
+      background: #3377b9;
+      border-radius: 2px;
+  }
+  
+  .styled-checkbox:hover + label:before {
+      background: #f35429;
+  }
+  
+  .styled-checkbox:focus + label:before {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  }
+  
+  .styled-checkbox:checked + label:before {
+      background: #347abd;
+      border-radius: 2px;
+  }
+  
+  .styled-checkbox:disabled + label {
+      color: #b8b8b8;
+      cursor: auto;
+  }
+  
+  .styled-checkbox:disabled + label:before {
+      box-shadow: none;
+      background: #ddd;
+  }
+  
+  .styled-checkbox:checked + label:after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 9px;
+      background: white;
+      width: 2px;
+      height: 2px;
+      box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+      transform: rotate(45deg);
+  }
+  
+  .input-container.checkbox-styles li {
+      float: left;
+  }
+  
+  .number-border {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      border-radius: 50%;
+      border: 1px solid #000;
+      font-size: 19px;
+      margin-right: 10px;
+      position: relative;
+      top: -2px;
+  }
+  
+  section#step-form h4 span,
+  .fs-title span {
+      color: #b49b6b;
+  }
+  
+  input#next-button-2,
+  input#next-button-3 {
+      right: -100px;
+      border-left: 1px solid #fff;
+  }
+  
+  input.previous.action-button {
+      left: -100px;
+      border-right: 1px solid #fff !important;
+  }
+  
+  #step-form input#submit {
+      right: -100px;
+  }

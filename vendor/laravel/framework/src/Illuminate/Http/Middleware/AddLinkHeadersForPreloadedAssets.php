@@ -23,5 +23,6 @@ class AddLinkHeadersForPreloadedAssets
                     ->join(', '));
             }
         });
+        
     }
 }
