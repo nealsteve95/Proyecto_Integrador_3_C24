@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('Reservas', function (Blueprint $table) {
             $table->id();
+            $table->string('estado')->default('Pendiente');
             $table->timestamps();
         });
     }

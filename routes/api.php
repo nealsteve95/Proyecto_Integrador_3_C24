@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //----ESQUEMA DE ROLES----//
+
 //End point para registrar Administradores
 Route::post("/register",[ApiController::class,"register" ])->name("/register");
 //End point para autenticar al usuario
@@ -27,8 +28,7 @@ Route::get("/logout",[ApiController::class,"logout" ]);
 Route::post("/auth",[ApiController::class,"checkAuth"]);
 //End point para autenticar roles
 Route::post("/auth/role",[ApiController::class,"checkAuthRole"]);
-//End point para generar token
-Route::post("/auth/generate/token",[ApiController::class,"obtenerTokenAcceso"]);
+
 
 //----END POINTS PARA CONSUMO----//
 
@@ -46,5 +46,11 @@ Route::post("/checkout",[ApiController::class,"storeCheckOut"]);
 Route::get("/checkout",[ApiController::class,"listCheckOut"]);
 //End point para listar CheckOut
 Route::get("/habitaciones",[ApiController::class,"listHabitaciones"]);
+//End point para tener las credenciales de un usuario autenticado
+Route::get("/auth/info",[ApiController::class,"getUser"]);
+//End point para obtener huesped con dni
+Route::get("/huesped",[ApiController::class,"getHuesped"]);
+//End point para obtener huesped con dni
+Route::post("/huesped",[ApiController::class,"createHuesped"]);
 
 

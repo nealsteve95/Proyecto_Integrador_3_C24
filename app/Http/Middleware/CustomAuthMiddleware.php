@@ -16,6 +16,7 @@ class CustomAuthMiddleware
             $request->headers->set('Authorization', 'Bearer ' . $token);
         }
 
+
         if (Auth::guard('sanctum')->check()) {
             return $next($request);
         }
