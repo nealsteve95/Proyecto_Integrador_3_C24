@@ -117,8 +117,7 @@
             {{-- Aparentemente no esta colocando los botones por delante sino por debajo--}}
     
     @section('button-insert')
-                {{-- NOS FALTA EDITAR ESTA RUTA--}}
-        <a href="{{ route('administrador/reservas-showCreate') }}"><button class="app-content-headerButton">Crear Reserva</button></a>
+            
 
     @endsection
     {{-- Aqui comienzan los encabezdos de la tabla --}}
@@ -167,7 +166,7 @@
             
                 @foreach ($checksin as $checkin)
                 @csrf
-                <a class="row-element" href="{{ route('administrador/reservas-show', ['id'=>$checkin['_id']]) }}">   
+                <a class="row-element" href="{{ url('administrador/reservas-show', ['id'=>$checkin['_id']]) }}">   
                     <div class="products-row">
                          <div class="product-cell tipo_id_huesped">
                             <span class="value-row">{{$checkin['id_huesped']}}</span>
@@ -191,7 +190,7 @@
                             <span class="value-row">{{$checkin['estado']}}</span>
                         </div>
                         <div class="product-cell action">
-                                <form action="/administrador/checkout" method="POST">
+                                <form action="/administrador/confirmarCheckOut" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$checkin["_id"]}}">
                                     <button type="submit" class="raise btn-red">Check Out</button>
@@ -238,7 +237,7 @@
             
                 @foreach ($checksout as $checkout)
                 @csrf
-                <a class="row-element" href="{{ route('administrador/reservas-show', ['id'=>$checkout['_id']]) }}">   
+                <a class="row-element" href="{{ url('administrador/reservas-show', ['id'=>$checkout['_id']]) }}">   
                     <div class="products-row">
                         <div class="product-cell tipo_habitacion">
                             <span class="value-row">{{$checkout['forma_pago']}}</span>

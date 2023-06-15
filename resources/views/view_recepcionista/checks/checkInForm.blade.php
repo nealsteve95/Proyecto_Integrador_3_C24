@@ -101,23 +101,23 @@
         Generar Check In
     @endsection
     <div class="form-parent">
-        <form action="{{ url('api/checkin') }}" class="form form-updateUser" method="POST">
+        <form action="{{ route('administrador/generarCheckIn') }}" class="form form-updateUser" method="POST">
             @csrf
             <div class="form-group">
-                <input class="form-input" type="text" name="nombre" class="form-input" placeholder="Nombre de Recepcionista" value="{{$user->name}}" required readonly>
+                <input class="form-input" type="text" name="nombre" class="form-input" placeholder="Nombre de Recepcionista" value="{{$user["data"]["name"]}}" required readonly>
             </div>
-            <input type="hidden" value="{{$user->_id}}" name="id_recepcionista">
+            <input type="hidden" value="{{$user["data"]["_id"]}}" name="id_recepcionista">
             <div class="form-group">
-                <input class="form-input" type="text" placeholder="Nombres" name="nombres" value="{{$data["datosHuesped"]["nombre_huesped"]}}" required>
-            </div>
-            <div class="form-group">
-                <input class="form-input" type="text" placeholder="Apellidos" name="apellidos" value="{{$data["datosHuesped"]["apellido_huesped"]}}" required>
+                <input class="form-input" type="text" placeholder="Nombres" name="nombres" value="{{$data["huesped"]["nombres"]}}" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="tel" placeholder="Telefono" name="telefono" value="{{$data["datosHuesped"]["telefono_huesped"]}}" required>
+                <input class="form-input" type="text" placeholder="Apellidos" name="apellidos" value="{{$data["huesped"]["apellidos"]}}" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="email" placeholder="Correo electrónico" name="correo" value="{{$data["datosHuesped"]["correo_huesped"]}}"required>
+                <input class="form-input" type="tel" placeholder="Telefono" name="telefono" value="{{$data["huesped"]["telefono"]}}" required>
+            </div>
+            <div class="form-group">
+                <input class="form-input" type="email" placeholder="Correo electrónico" name="correo" value="{{$data["huesped"]["correo"]}}"required>
             </div>
             <div class="form-group">
                 <input class="form-input" type="text" placeholder="PAX" name="paxs" value="{{$data["datosReserva"]["pax_reserva"]}}"required>
@@ -135,7 +135,7 @@
                 <input class="form-input" type="text" placeholder="Tipo Reserva" name="tipo_reserva" value="aplicativo" required readonly>
             </div>
             <input class="form-input" type="hidden" name="fecha_ingreso" value="{{ date('d-m-Y H:i') }}" required>
-            <input type="hidden" value="{{$data["datosHuesped"]["identificacion"]["identificacion_huesped"]}}" name="id_huesped">
+            <input type="hidden" value="{{$data["huesped"]["identificacion"]["identificacion_huesped"]}}" name="id_huesped">
             <input type="hidden" value="{{$data["datosReserva"]["habitacion"]["nro_habitacion_reserva"]}}" name="nro_habitacion">
             
             <div class="form-group">

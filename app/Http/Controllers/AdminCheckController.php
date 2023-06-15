@@ -8,6 +8,8 @@ use App\Models\Checkout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
+
 
 class AdminCheckController extends Controller
 {
@@ -16,16 +18,19 @@ class AdminCheckController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $req)
+    public function mostrarCheck(Request $req)
     {
         //
         //dd($req);
-        $checksIn=Checkin::where("estado","active")->get();
-        $checksOut=Checkout::all();
+        $responseChecksIn=Http::get("http://127.0.0.1:8000/api/checkin");
+        $dataCheckIn = json_decode($responseChecksIn->getBody(), true);
+        $responseChecksOut=Http::get("http://127.0.0.1:8000/api/checkout");
+        $dataCheckOut = json_decode($responseChecksOut->getBody(), true);
+
 /*         $client = new Client();
         $response = $client->get('https://127.0.0.1:8000/api/reserva');
         $data = json_decode($response->getBody(), true); */
-        return view('view_recepcionista/checks/check',['checksin' => $checksIn,'checksout'=>$checksOut]);
+        return view('view_recepcionista/checks/index',['checksin' => $dataCheckIn["data"],'checksout'=>$dataCheckOut["data"]]);
     }
 
     /**
@@ -33,34 +38,76 @@ class AdminCheckController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $req)
+    public function confirmarCheckIn(Request $req)
     {
         //
-        //dd($req->input("reservas"));
-        $user=Auth::user();
-        $reservas=$req->input("id");
-        //dd($user);
-        $client = new Client();
-        $response = $client->get('https://fcc9-190-232-27-74.ngrok-free.app/api/reserva');
-        $data = json_decode($response->getBody(), true);
-        //dd($data);
-        foreach($data as $data1){
-            
-            if($data1["_id"]==$reservas){
-                $datosReserva=$data1;
-            }
-        }
-        return view('view_recepcionista/checks/form',["reservas"=>$reservas,"user"=>$user,"data"=>$datosReserva]);
-    }
-    public function create2(Request $req)
-    {
-        //
-        //dd($req->input("reservas"));
-        $user=Auth::user();
+        $token = $req->session()->get('token');
         $id=$req->input("id");
-        $response = Checkin::find($id);
-        //dd($response);
-        return view('view_recepcionista/checks/checkOutForm',["data"=>$response,"user"=>$user]);
+        $responseReserva = Http::get("http://127.0.0.1:8000/api/reserva?id=$id");
+        $responseUser = Http::withHeaders([
+            'Authorization'=>'Bearer '.$token,
+            'Accept' => 'application/json',
+            ])->get("http://127.0.0.1:8000/api/auth/info");
+        $dataReserva = json_decode($responseReserva->getBody(), true);
+        $dataUser = json_decode($responseUser->getBody(), true);
+        //dd($dataReserva["data"][0]);
+        return view('view_recepcionista/checks/checkInForm',["data"=>$dataReserva["data"][0],"user"=>$dataUser]);
+    }
+    public function generarCheckIn(Request $req){
+        //http://127.0.0.1:8000/api/checkin
+        $checkIn=[
+            "id_huesped"=>$req->input("id_huesped"),
+            "nro_habitacion"=>$req->input("nro_habitacion"),
+            "id_recepcionista"=>$req->input("id_recepcionista"),
+            "tipo_reserva"=>$req->input("tipo_reserva"),
+            "paxs"=>$req->input("paxs"),
+            "cantidad_dias"=>$req->input("cantidad_dias"),
+            "motivo_viaje"=>$req->input("motivo_viaje"),
+            "fecha_ingreso"=>$req->input("fecha_ingreso"),
+            "nota_adicionales"=>$req->input("nota_adicionales"),
+        ];
+        $response=Http::post("http://127.0.0.1:8000/api/checkin",$checkIn);
+        //dd($response->body());
+        if($response->successful()){
+            return redirect()->route('administrador/check');
+        }else{
+            return redirect()->back();
+        }
+    }
+    public function confirmarCheckOut(Request $req)
+    {
+        //
+        $token = $req->session()->get('token');
+        $id=$req->input("id");
+        $responseUser = Http::withHeaders([
+            'Authorization'=>'Bearer '.$token,
+            'Accept' => 'application/json',
+            ])->get("http://127.0.0.1:8000/api/auth/info");
+        $dataUser = json_decode($responseUser->getBody(), true);
+        $responseCheckIn = Http::get("http://127.0.0.1:8000/api/checkin?id=$id");
+        $dataCheckIn = json_decode($responseCheckIn->getBody(), true);
+        
+        //dd($dataCheckIn["data"][0]);
+        return view('view_recepcionista/checks/checkOutForm',["data"=>$dataCheckIn["data"][0],"user"=>$dataUser["data"]]);
+    }
+    public function generarCheckOut(Request $req){
+        //http://127.0.0.1:8000/api/checkout
+
+        $checkOut=[
+            "id_checkin"=>$req->input("id_checkin"),
+            "id_recepcionista"=>$req->input("id_recepcionista"),
+            "forma_pago"=>$req->input("forma_pago"),
+            "estado_pago"=>$req->input("estado_pago"),
+            "descripcion_salida"=>$req->input("descripcion_salida"),
+            "fecha_salida"=>$req->input("fecha_salida"),
+        ];
+        $response=Http::post("http://127.0.0.1:8000/api/checkout",$checkOut);
+        //dd($response->body());
+        if($response->successful()){
+            return redirect()->route('administrador/check');
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -69,10 +116,7 @@ class AdminCheckController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.
@@ -80,10 +124,7 @@ class AdminCheckController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -91,10 +132,7 @@ class AdminCheckController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -103,10 +141,7 @@ class AdminCheckController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -114,8 +149,5 @@ class AdminCheckController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+
 }

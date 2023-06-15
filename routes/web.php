@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AdminCheckController;
+use App\Http\Controllers\AdminHuespedController;
 use Illuminate\Support\Facades\Route;
 
 // Controladores (no tocar)
 use App\Http\Controllers\HuespedController;
 use App\Http\Controllers\HabitacionController;
 use App\Http\Controllers\AdministradoresController;
+use App\Http\Controllers\AdminReservaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\ServicioController;
@@ -75,20 +77,28 @@ Route::middleware(['custom.auth'])->group(function(){
     //-----------------VISTAS PARA ADMINISTRADOR---------------------//
 
     Route::get('/administrador/home',function(){return view('view_recepcionista/indexrecep');}) -> name('administrador/home')->middleware("check");
+
     Route::get('/administrador/huespedes',function(){$huespedes=[];return view('view_recepcionista/huespedes/index',["huespedes"=>$huespedes]);}) -> name('administrador/huespedes')->middleware("check");
+    Route::get('/administrador/createHuesped',[AdminHuespedController::class,"createHuesped"]) -> name('administrador/createHuesped')->middleware("check");
+    Route::post('/administrador/storeHuesped',[AdminHuespedController::class,"storeHuesped"]) -> name('/administrador/storeHuesped')->middleware("check");
+
     Route::get('/administrador/habitaciones',function(){$habitaciones=[];return view('view_recepcionista/habitaciones/index',["habitaciones"=>$habitaciones]);}) -> name('administrador/habitaciones')->middleware("check");
     Route::get('/administrador/reportes',function(){return view('view_recepcionista/reportes/report');}) -> name('administrador/reportes')->middleware("check");
-    Route::get('/administrador/check',[AdminCheckController::class, 'index']) -> name('administrador/check')->middleware("check");
-    Route::post('/administrador/check',[AdminCheckController::class, 'create']) -> name('administrador/checkC')->middleware("check");
-    Route::post('/administrador/checkout',[AdminCheckController::class, 'create2']) -> name('administrador/checkC')->middleware("check");
+
+    Route::get('/administrador/check',[AdminCheckController::class, 'mostrarCheck']) -> name('administrador/check')->middleware("check");
+    Route::post('/administrador/confirmarCheckIn',[AdminCheckController::class, 'confirmarCheckIn']) -> name('administrador/confirmarCheckIn')->middleware("check");
+    Route::post('/administrador/generarCheckIn',[AdminCheckController::class, 'generarCheckIn']) -> name('administrador/generarCheckIn')->middleware("check");
+    Route::post('/administrador/confirmarCheckOut',[AdminCheckController::class, 'confirmarCheckOut']) -> name('administrador/confirmarCheckOut')->middleware("check");
+    Route::post('/administrador/generarCheckOut',[AdminCheckController::class, 'generarCheckOut']) -> name('administrador/generarCheckOut')->middleware("check");
+    
     Route::get('/administrador/cochera',function(){return view('view_recepcionista/cochera/index');}) -> name('administrador/cochera')->middleware("check");
     Route::get('/administrador/logout',function(){return route('api/logout');}) -> name('administrador/logout');
     
     // Ruta para mostrar todas las reservas
-    Route::get('/administrador/reservas', [ReservaController::class, 'index']) -> name('administrador/reservas')->middleware("check"); 
-    Route::get('/administrador/reservas-show/{id}', [ReservaController::class, 'show']) -> name('administrador/reservas-show')->middleware("check");
-    Route::get('/administrador/reservas-showCreate', function(){ return view('view_recepcionista/reservas/showCreate'); }) -> name('administrador/reservas-showCreate')->middleware("check");
-    // Ruta para borrar los datos
-    Route::delete('/administrador/reservas-delete/{id}', [ReservaController::class, 'delete']) -> name('administrador/reservas-delete')->middleware("check");
+    Route::get('/administrador/createReserva', [AdminReservaController::class, 'createReserva']) -> name('administrador/createReserva')->middleware("check"); 
+    Route::get('/administrador/reservas', [AdminReservaController::class, 'mostrarReservas']) -> name('administrador/reservas')->middleware("check"); 
+    Route::post('/administrador/verificarIdentidad', [AdminReservaController::class, 'verificarIdentidad']) -> name('administrador/verificarIdentidad')->middleware("check"); 
+    Route::post('/administrador/realizarReserva', [AdminReservaController::class, 'realizarReserva']) -> name('/administrador/realizarReserva')->middleware("check"); 
 
 });
+Route::get('/logout',[LoginController::class,"logout"])->name('/logout');

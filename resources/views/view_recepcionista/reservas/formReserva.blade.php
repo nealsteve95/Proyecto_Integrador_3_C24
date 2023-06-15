@@ -98,27 +98,24 @@
     @section('title')   
         Informacion del Huesped
     @endsection
-    @if (session('error'))
-    <div class="status">
-        Alerta: {{ session('error') }}
-    </div>
-    @endif
-        <form action="{{ route('administrador/verificarIdentidad') }}" class="form form-updateUser" method="POST">
+        <form action="{{ route('/administrador/realizarReserva') }}" class="form form-updateUser" method="POST">
             @csrf
-            <label for="turno" class="form-label label-radio">Tipo de identificacion</label>
-            <div class="form-radio_2">
-                <dir class="radio-group form-check-input">
-                    <input class="form-input" type="radio" name="tipo_identificacion" value="DNI" checked><span>DNI</span>
-                </dir>
-                <div class="radio-group">
-                    <input class="form-input" type="radio" name="tipo_identificacion" value="Identificacion Extranjera"><span>Extranjero</span>
-                </div>
+            <input class="form-input" type="hidden" name="fecha_reserva" value="{{ date('d-m-Y H:i') }}" required>
+            <input type="hidden" name="id_huesped" value="{{$id_huesped}}" required>
+            <div class="form-group">
+                <input class="form-input" type="number" name="cantidad_dias" class="form-input" placeholder="Cantidad Dias" value="1" required>
             </div>
             <div class="form-group">
-                <input class="form-input" type="number" name="id" class="form-input" placeholder="Identificador" value="" required>
+                <input class="form-input" type="number" name="pax_reserva" class="form-input" placeholder="Nro de PAX" value="1" required>
+            </div>
+            <div class="form-group">
+                <input class="form-input" type="number" name="nro_habitacion_reserva" class="form-input" placeholder="Nro de Habitacion" value="" required>
+            </div>
+            <div class="form-group">
+                <input class="form-input" type="text" name="tipo_habitacion_reserva" class="form-input" placeholder="Tipo de Habitacion" value="" required>
             </div>
             <div>
-                <button class="btn-success">Siguiente</button>
+                <button class="btn-success">Realizar Reserva</button>
             </div>
         </form>
     

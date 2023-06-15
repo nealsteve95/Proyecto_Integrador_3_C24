@@ -101,15 +101,15 @@
         Generar Check Out
     @endsection
     <div class="form-parent">
-        <form action="{{ url('api/checkout') }}" class="form form-updateUser" method="POST">
+        <form action="{{ url('/administrador/generarCheckOut') }}" class="form form-updateUser" method="POST">
             @csrf
             <div class="form-group">
-                <input class="form-input" type="text" name="nombre" class="form-input" placeholder="Nombre de Recepcionista" value="{{$user->name}}" required readonly>
+                <input class="form-input" type="text" name="nombre" class="form-input" placeholder="Nombre de Recepcionista" value="{{$user["name"]}}" required readonly>
             </div>
             <div class="form-group">
-                <input class="form-input" type="text" name="id_checkin" class="form-input" placeholder="Id Check In" value="{{$data->_id}}" required readonly>
+                <input class="form-input" type="text" name="id_checkin" class="form-input" placeholder="Id Check In" value="{{$data["_id"]}}" required readonly>
             </div>
-            <input type="hidden" value="{{$user->_id}}" name="id_recepcionista">
+            <input type="hidden" value="{{$user["_id"]}}" name="id_recepcionista">
             <div class="form-group">
                 <input class="form-input" type="text" placeholder="Forma de Pago" name="forma_pago" value="" required>
             </div>

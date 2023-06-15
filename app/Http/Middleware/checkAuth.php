@@ -29,11 +29,10 @@ class checkAuth
             'Authorization'=>'Bearer '.$token,
             'Accept' => 'application/json',
         ])->post('http://127.0.0.1:8000/api/auth/role',["role"=>$role]);
-
         if($response->successful()){
             return $next($request);
         }else{
-            return redirect()->route('login')->with('error', "No se pudo autenticar");
+            return redirect()->back()->with('error', "No se pudo autenticar");
         }
 
         

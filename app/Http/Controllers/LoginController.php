@@ -5,10 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
 {
     //
+    public function logout(Request $req){
+        $client = new Client();
+        $token = $req->session()->get('token');
+        $response=Http::withHeaders([
+            'Authorization'=>'Bearer '.$token,
+            'Accept' => 'application/json',
+        ])->get('http://127.0.0.1:8000/api/logout');
+
+        if($response->successful()){
+            return redirect()->route("login");
+        }
+    }
     public function mostrarLogin(){
         return view("login");
     }

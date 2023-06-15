@@ -118,9 +118,14 @@
     
     @section('button-insert')
                 {{-- NOS FALTA EDITAR ESTA RUTA--}}
-        <a href="{{ route('administrador/reservas-showCreate') }}"><button class="app-content-headerButton">Crear Reserva</button></a>
+        <a href="{{ route('administrador/createReserva') }}"><button class="app-content-headerButton">Crear Reserva</button></a>
 
     @endsection
+    @if (session('status'))
+    <div class="status">
+        Alerta: {{ session('status') }}
+    </div>
+    @endif
     {{-- Aqui comienzan los encabezdos de la tabla --}}
         <div class="products-area-wrapper tableView">
             <div class="products-header">
@@ -167,13 +172,13 @@
             
                 @foreach ($reservas as $reserva)
                 @csrf
-                <a class="row-element" href="{{ route('administrador/reservas-show', ['id'=>$reserva['_id']]) }}">   
+                <a class="row-element" href="{{ url('administrador/reservas-show', ['id'=>$reserva['_id']]) }}">   
                     <div class="products-row">
                          <div class="product-cell tipo_id_huesped">
-                            <span class="value-row">{{$reserva['datosHuesped']['identificacion']['tipo_identificacion']}}</span>
+                            <span class="value-row">{{$reserva['huesped']['identificacion']['tipo_identificacion']}}</span>
                         </div>
                          <div class="product-cell id_huesped">
-                            <span class="value-row">{{$reserva['datosHuesped']['identificacion']['identificacion_huesped']}}</span>
+                            <span class="value-row">{{$reserva['huesped']['identificacion']['identificacion_huesped']}}</span>
                         </div>
                         <div class="product-cell nro_habitacion">
                             <span class="value-row">{{$reserva['datosReserva']['habitacion']['nro_habitacion_reserva']}}</span>
@@ -193,7 +198,7 @@
                         <div class="product-cell action">
                                 <button type="submit" class="raise btn-green">Editar</button>
                                 <button type="submit" class="raise btn-red">Eliminar</button>
-                                <form action="/administrador/check" method="POST">
+                                <form action="/administrador/confirmarCheckIn" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$reserva["_id"]}}">
                                     <button type="submit" class="raise btn-red">Check In</button>
