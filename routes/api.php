@@ -46,6 +46,11 @@ Route::post("/checkout", [ApiController::class, "storeCheckOut"]);
 Route::get("/checkout", [ApiController::class, "listCheckOut"]);
 //End point para listar CheckOut
 Route::get("/habitaciones", [ApiController::class, "listHabitaciones"]);
+//ENd point para obtener habitacion.
+Route::get("/habitacion", [ApiController::class, "getHabitacion"]);
+//End point para actualizar una habitacion (no actualiza la imagen).
+Route::put("/habitaciones/{id}", [ApiController::class, "actualizarHuespedes"]);
+
 //End point para tener las credenciales de un usuario autenticado
 Route::get("/auth/info", [ApiController::class, "getUser"]);
 //End point para obtener huesped con dni
@@ -55,4 +60,4 @@ Route::post("/huesped", [ApiController::class, "createHuesped"]);
 // End point para obtener todos los huespedes.
 Route::get("/huespedes", [ApiController::class, "listarHuespedes"]);
 // End point para actualizar un huesped especificado.
-Route::put("/huespedes-update/{id}", [ApiController::class, "actualizarHuespedes"]);
+Route::put("/huespedes/{id}", [ApiController::class, "actualizarHuespedes"]);

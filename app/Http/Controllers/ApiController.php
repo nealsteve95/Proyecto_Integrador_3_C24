@@ -17,6 +17,77 @@ use App\Models\Reserva;
 
 class ApiController extends Controller
 {
+    public function actualizarHabitaciones(Request $req, $id)
+    {
+        $validator = Validator::make($req->all(), [
+            "nro_habitacion_habitacion" => "required|integer",
+            "nro_piso_habitacion" => "required|string",
+            "tipo_habitacion_habitacion" => "required|string|max:20",
+            "precio_habitacion" => "required|double",
+            "estado_habitacion" => "required|string|max:15",
+            "caracteristicas_habitacion" => "required|string|max:200",
+            "imagen_habitacion" => "required|string",
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'message' => "Revisa tus datos",
+                'error' => $validator->errors(),
+            ], 400);
+        }
+
+        $habitacion = Habitacion::find($id);
+
+        if (!$habitacion) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Huesped no encontrado',
+            ], 404);
+        }
+
+        $habitacion->update([
+            "nro_habitacion" => $req->input("nro_habitacion_habitacion"),
+            "nro_piso" => $req->input("nro_piso_habitacion"),
+            "tipo_habitacion" => $req->input("tipo_habitacion_habitacion"),
+            "precio" => $req->input("precio_habitacion"),
+            "estado" => $req->input("estado_habitacion"),
+            "caracteristicas" => $req->input("caracteristicas_habitacion"),
+            "imagen" => $req->input("imagen_habitacion"),
+        ]);
+    }
+
+    public function getHabitacion(Request $req)
+    {
+        $validator = Validator::make($req->all(), [
+            "id" => "required|string",
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'message' => "Parametro incorrecto",
+                'error' => $validator->errors(),
+            ], 400);
+        }
+        if ($req->id) {
+            $id = $req->id;
+            $habitacion = Habitacion::find($id);
+            if ($habitacion) {
+                return response()->json([
+                    "status" => 200,
+                    "message" => "Se encontro 1 huesped",
+                    "data" => $habitacion
+                ]);
+            } else {
+                return response()->json([
+                    "status" => 400,
+                    "message" => "No se encontraron huespedes con el id: $id",
+                    "data" => []
+                ], 400);
+            }
+        }
+    }
+
 
     public function actualizarHuespedes(Request $req, $id)
     {
