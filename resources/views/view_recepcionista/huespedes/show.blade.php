@@ -45,7 +45,7 @@
 
 <div class="form-parent card-show-parent">
     <div class="form">
-        <form class="form-update" action="{{ url('administrador/huespedes-update', ['id' => $huesped->_id]) }}"
+        <form class="form-update" action="{{ url('/administrador/huespedes-update', ['id' => $huesped->_id]) }}"
             method="POST">
             @method('PUT')
             @csrf

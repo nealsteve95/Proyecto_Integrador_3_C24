@@ -102,6 +102,9 @@ Route::middleware(['custom.auth'])->group(function () {
 
 
     Route::get('/administrador/habitaciones', [AdminHabitacionController::class, "index"])->name("administrador/habitaciones")->middleware("check");
+    Route::get('/administrador/habitaciones-show/{id}', [AdminHabitacionController::class, "show"])->name("administrador/habitaciones-show")->middleware("check");
+    Route::put('/administrador/habitaciones-update/{id}', [AdminHabitacionController::class, "update"])->name("administrador/habitaciones-update")->middleware("check");
+
     Route::get('/administrador/reportes', function () {
         return view('view_recepcionista/reportes/report');
     })->name('administrador/reportes')->middleware("check");

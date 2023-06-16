@@ -19,39 +19,39 @@ class AdminHuespedController extends Controller
     {
         $response = Http::get("http://127.0.0.1:8000/api/huesped?tipo=id&id=" . $req->id);
         $responseBody = json_decode($response->body(), false);
-        // dd($req->id);
+        // dd($responseBody);
         return view('view_recepcionista.huespedes.show', ['huesped' => $responseBody->data]);
     }
 
-    // public function update(Request $req, $id)
-    // {
-    //     $huesped = [
-    //         "tipo_identificacion_huesped" => $req->input("tipo_identificacion"),
-    //         "identificacion_huesped" => $req->input("identificacion"),
-    //         "nombre_huesped" => $req->input("nombres"),
-    //         "apellido_huesped" => $req->input("apellidos"),
-    //         "sexo_huesped" => $req->input("sexo"),
-    //         "fecha_nacimiento_huesped" => $req->input("fecha_nacimiento"),
-    //         "nacionalidad_huesped" => $req->input("nacionalidad"),
-    //         "region_huesped" => $req->input("region"),
-    //         "direccion_huesped" => $req->input("direccion"),
-    //         "telefono_huesped" => $req->input("telefono"),
-    //         "correo_huesped" => $req->input("correo"),
-    //         "nombre_empresa" => $req->input("nombre_empresa"),
-    //         "ruc_empresa" => $req->input("ruc_empresa"),
-    //         "razon_social" => $req->input("razon_social_empresa"),
-    //         "direccion_empresa" => $req->input("direccion_empresa")
-    //     ];
+    public function update(Request $req, $id)
+    {
+        $huesped = [
+            "tipo_identificacion_huesped" => $req->input("tipo_identificacion"),
+            "identificacion_huesped" => $req->input("identificacion"),
+            "nombre_huesped" => $req->input("nombres"),
+            "apellido_huesped" => $req->input("apellidos"),
+            "sexo_huesped" => $req->input("sexo"),
+            "fecha_nacimiento_huesped" => $req->input("fecha_nacimiento"),
+            "nacionalidad_huesped" => $req->input("nacionalidad"),
+            "region_huesped" => $req->input("region"),
+            "direccion_huesped" => $req->input("direccion"),
+            "telefono_huesped" => $req->input("telefono"),
+            "correo_huesped" => $req->input("correo"),
+            "nombre_empresa" => $req->input("nombre_empresa"),
+            "ruc_empresa" => $req->input("ruc_empresa"),
+            "razon_social" => $req->input("razon_social_empresa"),
+            "direccion_empresa" => $req->input("direccion_empresa")
+        ];
 
-    //     $response = Http::put("http://127.0.0.1:8000/api/huespedes/{$id}", $huesped);
-    //     $responseBody = json_decode($response->getBody(), false);
-    //     dd($responseBody);
-    //     if ($response->successful()) {
-    //         return view("view_gerente.reservas.formReserva", ["id_huesped" => $responseBody->data->_id]);
-    //     } else {
-    //         return redirect()->back()->with('error', $responseBody->message);
-    //     }
-    // }
+        $response = Http::put("http://127.0.0.1:8000/api/huespedes/{$id}", $huesped);
+        $responseBody = json_decode($response->getBody(), false);
+        // dd($responseBody);
+        if ($response->successful()) {
+            return view("view_recepcionista.huespedes.show", ["huesped" => $responseBody->data]);
+        } else {
+            return redirect()->back()->with('error', $responseBody->message);
+        }
+    }
 
     public function storeHuesped(Request $req)
     {
