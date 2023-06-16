@@ -17,7 +17,93 @@ use App\Models\Reserva;
 
 class ApiController extends Controller
 {
-    //
+
+    public function actualizarHuespedes(Request $req, $id)
+    {
+        // Validación de los datos de entrada
+        $validator = Validator::make($req->all(), [
+            "nombre_huesped" => "required|string|max:255",
+            "apellido_huesped" => "required|string|max:255",
+            "tipo_identificacion_huesped" => "required|string|in:DNI,Identificacion Extranjera",
+            "identificacion_huesped" => "required|integer",
+            "sexo_huesped" => "required|string|in:masculino,femenino",
+            "fecha_nacimiento_huesped" => "required|date_format:Y-m-d",
+            "nacionalidad_huesped" => "required|string",
+            "region_huesped" => "required|string",
+            "direccion_huesped" => "required|string",
+            "telefono_huesped" => "required|integer",
+            "correo_huesped" => "required|string|email|max:255|unique:users",
+            "nombre_empresa" => "max:255",
+            "ruc_empresa" => "max:255",
+            "razon_social_empresa" => "max:255",
+            "direccion_empresa" => "max:255",
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'message' => "Revisa tus datos",
+                'error' => $validator->errors(),
+            ], 400);
+        }
+
+        $huesped = Huesped::find($id);
+
+        if (!$huesped) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Huesped no encontrado',
+            ], 404);
+        }
+
+        $huesped->update([
+            "identificacion" => [
+                "tipo_identificacion" => $req->input("tipo_identificacion_huesped"),
+                "identificacion_huesped" => $req->input("identificacion_huesped")
+            ],
+            "nombres" => $req->input("nombre_huesped"),
+            "apellidos" => $req->input("apellido_huesped"),
+            "sexo" => $req->input("sexo_huesped"),
+            "fecha_nacimiento" => $req->input("fecha_nacimiento_huesped"),
+            "nacionalidad" => $req->input("nacionalidad_huesped"),
+            "region" => $req->input("region_huesped"),
+            "direccion" => $req->input("direccion_huesped"),
+            "telefono" => $req->input("telefono_huesped"),
+            "correo" => $req->input("correo_huesped"),
+            "empresa" => [
+                "nombre_empresa" => $req->input("nombre_empresa"),
+                "ruc_empresa" => $req->input("ruc_empresa"),
+                "razon_social" => $req->input("razon_social_empresa"),
+                "direccion_empresa" => $req->input("direccion_empresa")
+            ]
+        ]);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Datos del huésped actualizados con éxito',
+            'data' => $huesped
+        ], 200);
+    }
+
+
+    public function listarHuespedes()
+    {
+        $huespedes = Huesped::all();
+        if ($huespedes) {
+            $cantidad = $huespedes->count();
+            return response()->json([
+                "status" => 200,
+                "message" => "Se han encontrado $cantidad huespedes",
+                "data" => $huespedes
+            ]);
+        } else {
+            return response()->json([
+                "status" => 400,
+                "message" => "No se han encontrado huespedes"
+            ], 400);
+        }
+    }
+
     public function createHuesped(Request $req)
     {
         $validator = Validator::make($req->all(), [
@@ -103,7 +189,7 @@ class ApiController extends Controller
                     "data" => []
                 ], 400);
             }
-        } else if($req->tipo == "extranjero"){
+        } else if ($req->tipo == "extranjero") {
             $id = $req->id;
             $huesped = Huesped::where('identificacion.identificacion_huesped', $id)
                 ->where('identificacion.tipo_identificacion', 'Identificacion Extranjera')
