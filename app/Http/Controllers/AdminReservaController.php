@@ -27,72 +27,70 @@ class AdminReservaController extends Controller
             "ruc_empresa" => $huesped->empresa->ruc_empresa,
             "razon_social_empresa" => $huesped->empresa->razon_social,
             "direccion_empresa" => $huesped->empresa->direccion_empresa,*/
-            "id_huesped"=>$req->input("id_huesped"),
+            "id_huesped" => $req->input("id_huesped"),
             "fecha_reserva" => $req->input("fecha_reserva"),
             "cantidad_dias_reserva" => $req->input("cantidad_dias"),
             "pax_reserva" => $req->input("pax_reserva"),
             "nro_habitacion_reserva" => $req->input("nro_habitacion_reserva"),
             "tipo_habitacion_reserva" => $req->input("tipo_habitacion_reserva"),
         ];
-        $response=Http::post("http://127.0.0.1:8000/api/reserva",$dataReserva);
-        if($response->successful()){
+        $response = Http::post("http://127.0.0.1:8000/api/reserva", $dataReserva);
+        if ($response->successful()) {
 
-            $responseBody=json_decode($response->body(),false);
+            $responseBody = json_decode($response->body(), false);
             //dd($responseBody);
-            return redirect()->route("administrador/reservas")->with("status",$responseBody->message);
+            return redirect()->route("administrador/reservas")->with("status", $responseBody->message);
+        } else {
 
-        }else{
-
-            return redirect()->back()->with("error",$responseBody->message);
-
+            return redirect()->back()->with("error", $responseBody->message);
         }
     }
     public function verificarIdentidad(Request $req)
     {
-        $tipo_id=$req->input("tipo_identificacion");
-        $dni=$req->input("id");
-        if($tipo_id=="DNI"){
+        $tipo_id = $req->input("tipo_identificacion");
+        $dni = $req->input("id");
+        if ($tipo_id == "DNI") {
 
-            $response = Http::get('http://127.0.0.1:8000/api/huesped?tipo=dni&id='.$dni);
+            $response = Http::get('http://127.0.0.1:8000/api/huesped?tipo=dni&id=' . $dni);
             $responseData = json_decode($response->body(), false);
             if ($response->successful()) {
                 //Mandarlo a vista donde solo complete datos de reserva
-    
-                return view("view_recepcionista.reservas.formReserva",["id_huesped"=>$responseData->data->_id]);
+
+                return view("view_recepcionista.reservas.formReserva", ["id_huesped" => $responseData->data->_id]);
             } else {
                 //Mandarlo a que se registre como huesped
-                $data=[
-                    "dni"=>$dni,
-                    "tipo"=>"dni"
+                $data = [
+                    "dni" => $dni,
+                    "tipo" => "dni"
                 ];
-                return redirect()->route("administrador/createHuesped",["data"=>$data]);
+                return redirect()->route("administrador/createHuesped", ["data" => $data]);
             }
-            
-        }else{
+        } else {
             //dd($tipo_id,$dni);
-            $response = Http::get('http://127.0.0.1:8000/api/huesped?tipo=extranjero&id='.$dni);
+            $response = Http::get('http://127.0.0.1:8000/api/huesped?tipo=extranjero&id=' . $dni);
             $responseData = json_decode($response->body(), false);
-            if($response->successful()){
-                return view("view_recepcionista.reservas.formReserva",["id_huesped"=>$responseData->data->_id]);
-            }else{
-                $data=[
-                    "dni"=>$dni,
-                    "tipo"=>"extranjero"
+            if ($response->successful()) {
+                return view("view_recepcionista.reservas.formReserva", ["id_huesped" => $responseData->data->_id]);
+            } else {
+                $data = [
+                    "dni" => $dni,
+                    "tipo" => "extranjero"
                 ];
-                return redirect()->route("administrador/createHuesped",["data"=>$data]);
+                return redirect()->route("administrador/createHuesped", ["data" => $data]);
             }
         }
     }
     public function mostrarReservas()
     {
         $response = Http::get('http://127.0.0.1:8000/api/reserva');
-        $responseData = json_decode($response->body(), true);
+        $responseData = json_decode($response->body(), false);
+        // dd($responseData);
 
         //dd($responseData["data"]);
         if ($response->successful()) {
-            return view('view_recepcionista.reservas.index', ['reservas' => $responseData["data"]]);
+            return view('view_recepcionista.reservas.index', ['reservas' => $responseData->data]);
         } else {
-            return view('view_recepcionista.reservas.index', ['reservas' => $responseData["data"]]);
+            return view('view_recepcionista.reservas.index', ['reservas' => $responseData->data]);
         }
     }
 
