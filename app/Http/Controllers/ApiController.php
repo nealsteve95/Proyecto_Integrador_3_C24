@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use App\Models\Administrador;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -380,13 +381,13 @@ class ApiController extends Controller
 
     public function login(Request $req)
     {
+
         if (!Auth::attempt($req->only("email", "password"))) {
 
-            /* return redirect()->route('login')->with('error', 'Credenciales Incorrectas'); */
-            return response()->json([
-                "status" => 400,
-                "message" => "Credenciales Incorrectas",
-            ], 400);
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
+
         }
         $user = Administrador::where("email", $req["email"])->firstOrFail();
 
@@ -398,11 +399,6 @@ class ApiController extends Controller
             "token" => $token,
             "rol" => $role
         ])->header('Content-Type', 'application/json; charset=utf-8');;
-        //$cookie = cookie('token', $token, 60);
-        //$url = route('administrador/home');
-        //return redirect($url)->withCookie(cookie('token', $cookie, $minutes = 60, $path = null, $domain = null, $secure = true, $httpOnly = true));
-        //$url = route('gerente/home');
-        //return redirect($url)->withCookie(cookie('token', $cookie, $minutes = 60, $path = null, $domain = null, $secure = true, $httpOnly = true));
 
     }
 
