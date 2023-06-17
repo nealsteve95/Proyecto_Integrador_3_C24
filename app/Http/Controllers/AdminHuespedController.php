@@ -45,13 +45,31 @@ class AdminHuespedController extends Controller
 
         $response = Http::put("http://127.0.0.1:8000/api/huespedes/{$id}", $huesped);
         $responseBody = json_decode($response->getBody(), false);
-        // dd($responseBody);
         if ($response->successful()) {
+            dd($responseBody);
             return view("view_recepcionista.huespedes.show", ["huesped" => $responseBody->data]);
         } else {
             return redirect()->back()->with('error', $responseBody->message);
         }
     }
+    public function updateEmpresa(Request $req, $id)
+    {
+        $empresa = [
+            "ruc_empresa" => $req->input("ruc_empresa_empresa"),
+            "razon_social" => $req->input("razon_social_empresa"),
+            "direccion_empresa" => $req->input("direccion_empresa_empresa"),
+        ];
+
+        $response = Http::put("http://127.0.0.1:8000/api/huespedesEmpresa/{$id}", $empresa);
+        $responseBody = json_decode($response->getBody(), false);
+        if ($response->successful()) {
+            dd($responseBody);
+            return view("view_recepcionista.huespedes.show", ["huesped" => $responseBody->data]);
+        } else {
+            return redirect()->back()->with('error', $responseBody->message);
+        }
+    }
+
 
     public function storeHuesped(Request $req)
     {

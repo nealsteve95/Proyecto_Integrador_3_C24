@@ -153,9 +153,12 @@
         <div class="product-cell stock">
             Estado
         </div>
-        <div class="product-cell price">
-            Accion
+        <div class="product-cell stock">
+            Caracteristicas
         </div>
+        {{-- <div class="product-cell price">
+            Accion
+        </div> --}}
     </div>
     {{-- Final de los encabezados de la lista --}}
     {{-- Aquí la lista de habitaciones --}}
@@ -180,14 +183,14 @@
                 <span class="cell-label">
                     <textarea class="form-input" disabled>{{ $habitacion->caracteristicas }}</textarea>
                 </span>
-                <div class="product-cell action">
+                {{-- <div class="product-cell action">
                     <form action="{{ url('administrador/habitaciones-delete', ['id' => $habitacion->_id]) }}"
                         method="POST">
                         @method('DELETE')
                         @csrf
                         <button type="submit" class="raise btn-red">Eliminar</button>
                     </form>
-                </div>
+                </div> --}}
             </div>
         </a>
     @endforeach

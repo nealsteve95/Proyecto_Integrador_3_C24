@@ -30,11 +30,12 @@ class AdminHabitacionController extends Controller
     {
         $habitacion = [
             "nro_habitacion_habitacion" => $req->input("nro_habitacion"),
-            "nro_piso_habitacion" => $req->input("nro_piso"),
+            // "nro_piso_habitacion" => $req->input("nro_piso"),
             "tipo_habitacion_habitacion" => $req->input("tipo_habitacion"),
             "precio_habitacion" => $req->input("precio"),
             "estado_habitacion" => $req->input("estado"),
             "caracteristicas_habitacion" => $req->input("caracteristicas"),
+            // "imagen_habitacion" => $req->input("imagen")
         ];
 
         $response = Http::put("http://127.0.0.1:8000/api/habitaciones/{$id}", $habitacion);

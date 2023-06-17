@@ -158,6 +158,8 @@
                 <p>Datos de empresa</p>
             </div>
             <div class="card-content">
+
+
                 <div class="card-group form-group">
                     <label for="RUC">RUC</label>
                     <input class="form-input" type="number" name="RUC"

@@ -98,7 +98,8 @@ Route::middleware(['custom.auth'])->group(function () {
     Route::get('/administrador/createHuesped', [AdminHuespedController::class, "createHuesped"])->name('administrador/createHuesped')->middleware("check");
     Route::post('/administrador/storeHuesped', [AdminHuespedController::class, "storeHuesped"])->name('/administrador/storeHuesped')->middleware("check");
     Route::get('/administrador/huespedes-show/{id}', [AdminHuespedController::class, "show"])->name('administrador/huespedes-show')->middleware("check");
-    Route::put('/administrador/huespedes-update/{id}', [AdminHuespedController::class, "update"])->name('administrador/huesped-update')->middleware("check");
+    Route::put('/administrador/huespedes-update/{id}', [AdminHuespedController::class, "update"])->name('administrador/huespedes-update')->middleware("check");
+    Route::put('/administrador/huespedes-updateEmpresa/{id}', [AdminHuespedController::class, "updateEmpresa"])->name('administrador/huespedes-updateEmpresa')->middleware("check");
 
 
     Route::get('/administrador/habitaciones', [AdminHabitacionController::class, "index"])->name("administrador/habitaciones")->middleware("check");
