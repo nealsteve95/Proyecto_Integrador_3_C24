@@ -19,14 +19,15 @@ class ApiController extends Controller
 {
     public function actualizarHabitaciones(Request $req, $id)
     {
+        // dd($id);
         $validator = Validator::make($req->all(), [
             "nro_habitacion_habitacion" => "required|integer",
-            "nro_piso_habitacion" => "required|string",
-            "tipo_habitacion_habitacion" => "required|string|max:20",
-            "precio_habitacion" => "required|double",
+            // "nro_piso_habitacion" => "required|string",
+            "tipo_habitacion_habitacion" => "required|string",
+            "precio_habitacion" => "required|integer",
             "estado_habitacion" => "required|string|max:15",
             "caracteristicas_habitacion" => "required|string|max:200",
-            "imagen_habitacion" => "required|string",
+            // "imagen_habitacion" => "required|string",
         ]);
 
         if ($validator->fails()) {
@@ -48,12 +49,16 @@ class ApiController extends Controller
 
         $habitacion->update([
             "nro_habitacion" => $req->input("nro_habitacion_habitacion"),
-            "nro_piso" => $req->input("nro_piso_habitacion"),
+            // "nro_piso" => $req->input("nro_piso_habitacion"),
             "tipo_habitacion" => $req->input("tipo_habitacion_habitacion"),
             "precio" => $req->input("precio_habitacion"),
             "estado" => $req->input("estado_habitacion"),
             "caracteristicas" => $req->input("caracteristicas_habitacion"),
-            "imagen" => $req->input("imagen_habitacion"),
+            // "imagen" => $req->input("imagen_habitacion"),
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Se ha actualizado la habitacion ' . $id,
         ]);
     }
 
@@ -87,7 +92,63 @@ class ApiController extends Controller
             }
         }
     }
+    public function actualizarEmpresa(Request $req, $id)
+    {
+        $validator = Validator::make($req->all(), [
+            "ruc_empresa_empresa" => "required|integer",
+            "razon_social_empresa" => "required|string",
+            "direccion_empresa_empresa" => "required|string",
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'message' => "Revisa tus datos",
+                'error' => $validator->errors(),
+            ], 400);
+        }
 
+        $empresa = Huesped::find($id);
+
+
+        if (!$empresa) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Huesped no encontrado',
+            ], 404);
+        }
+
+        $empresa->update([
+            "empresa" => [
+                "ruc_empresa" => $req->input("ruc_empresa_empresa"),
+                "razon_social" => $req->input("razon_social_empresa"),
+                "direccion_empresa" => $req->input("direccion_empresa_empresa")
+            ]
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Se ha actualizado la empresa del huesped ' . $id,
+            'data' => $empresa
+        ]);
+    }
+
+    public function eliminarHuesped($id)
+    {
+        $huesped = Huesped::find($id);
+
+        if (!$huesped) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Huesped no encontrado',
+            ], 404);
+        }
+
+        $huesped->delete();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Huesped eliminado exitosamente',
+        ]);
+    }
 
     public function actualizarHuespedes(Request $req, $id)
     {
