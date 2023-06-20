@@ -46,7 +46,6 @@ class AdminHuespedController extends Controller
         $response = Http::put("http://127.0.0.1:8000/api/huespedes/{$id}", $huesped);
         $responseBody = json_decode($response->getBody(), false);
         if ($response->successful()) {
-            dd($responseBody);
             return view("view_recepcionista.huespedes.show", ["huesped" => $responseBody->data]);
         } else {
             return redirect()->back()->with('error', $responseBody->message);
@@ -55,15 +54,16 @@ class AdminHuespedController extends Controller
     public function updateEmpresa(Request $req, $id)
     {
         $empresa = [
-            "ruc_empresa" => $req->input("ruc_empresa_empresa"),
-            "razon_social" => $req->input("razon_social_empresa"),
-            "direccion_empresa" => $req->input("direccion_empresa_empresa"),
+            "ruc_empresa_empresa" => $req->input("ruc_empresa"),
+            "razon_social_empresa" => $req->input("razon_social"),
+            "direccion_empresa_empresa" => $req->input("direccion_empresa"),
         ];
 
         $response = Http::put("http://127.0.0.1:8000/api/huespedesEmpresa/{$id}", $empresa);
         $responseBody = json_decode($response->getBody(), false);
+        dd($responseBody);
+
         if ($response->successful()) {
-            dd($responseBody);
             return view("view_recepcionista.huespedes.show", ["huesped" => $responseBody->data]);
         } else {
             return redirect()->back()->with('error', $responseBody->message);
@@ -138,5 +138,13 @@ class AdminHuespedController extends Controller
             ]));
             return view("view_recepcionista.huespedes.showCreate", ["data" => $data]);
         }
+    }
+
+    public function delete($id)
+    {
+        $response = Http::delete("http://127.0.0.1:8000/api/huespedes/{$id}");
+        $responseBody = json_decode($response->body(), false);
+        dd($responseBody);
+        return view('view_recepcionista/huespedes/index', ["huespedes" => $responseBody->data]);
     }
 }

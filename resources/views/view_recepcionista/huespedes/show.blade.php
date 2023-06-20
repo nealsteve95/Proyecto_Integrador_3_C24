@@ -161,8 +161,8 @@
 
 
                 <div class="card-group form-group">
-                    <label for="RUC">RUC</label>
-                    <input class="form-input" type="number" name="RUC"
+                    <label for="ruc_empresa">RUC</label>
+                    <input class="form-input" type="number" placeholder="RUC de la empresa" name="ruc_empresa"
                         value="{{ $huesped->empresa->ruc_empresa }}" disabled>
                 </div>
                 <div class="card-group form-group">
