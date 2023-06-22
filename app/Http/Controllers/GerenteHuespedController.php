@@ -15,6 +15,14 @@ class GerenteHuespedController extends Controller
         return view('view_gerente/huespedes/index', ["huespedes" => $responseBody->data]);
     }
 
+    public function show(Request $req)
+    {
+        $response = Http::get("http://127.0.0.1:8000/api/huesped?tipo=id&id=" . $req->id);
+        $responseBody = json_decode($response->body(), false);
+        // dd($responseBody);
+        return view('view_gerente.huespedes.show', ['huesped' => $responseBody->data]);
+    }
+
     public function update(Request $req, $id)
     {
         $huesped = [
@@ -37,13 +45,32 @@ class GerenteHuespedController extends Controller
 
         $response = Http::put("http://127.0.0.1:8000/api/huespedes/{$id}", $huesped);
         $responseBody = json_decode($response->getBody(), false);
-        dd($responseBody);
         if ($response->successful()) {
-            return view("view_gerente.reservas.formReserva", ["id_huesped" => $responseBody->data->_id]);
+            return view("view_gerente.huespedes.show", ["huesped" => $responseBody->data]);
         } else {
             return redirect()->back()->with('error', $responseBody->message);
         }
     }
+    public function updateEmpresa(Request $req, $id)
+    {
+        $empresa = [
+            "ruc_empresa_empresa" => $req->input("ruc_empresa"),
+            "razon_social_empresa" => $req->input("razon_social"),
+            "direccion_empresa_empresa" => $req->input("direccion_empresa"),
+        ];
+
+        $response = Http::put("http://127.0.0.1:8000/api/huespedesEmpresa/{$id}", $empresa);
+        $responseBody = json_decode($response->getBody(), false);
+        // dd($responseBody);
+
+        if ($response->successful()) {
+            return view("view_gerente.huespedes.show", ["huesped" => $responseBody->data]);
+        } else {
+            return redirect()->back()->with('error', $responseBody->message);
+        }
+    }
+
+
 
 
     public function storeHuesped(Request $req)

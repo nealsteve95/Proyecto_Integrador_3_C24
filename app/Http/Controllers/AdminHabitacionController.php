@@ -40,7 +40,7 @@ class AdminHabitacionController extends Controller
 
         $response = Http::put("http://127.0.0.1:8000/api/habitaciones/{$id}", $habitacion);
         $responseBody = json_decode($response->getBody(), false);
-        dd($responseBody);
+        // dd($responseBody);
         if ($response->successful()) {
             return view("view_recepcionista.habitaciones.show", ["habitacion" => $responseBody->data]);
         } else {

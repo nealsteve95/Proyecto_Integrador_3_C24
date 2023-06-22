@@ -65,10 +65,10 @@
         @endsection
     @endcomponent
 @endsection
-@section('button-insert')
+{{-- @section('button-insert')
     <a href="{{ route('gerente/habitaciones-showCreate') }}"><button class="app-content-headerButton">Registrar
             habitación</button></a>
-@endsection
+@endsection --}}
 {{-- Aqui estan los encabezados de la tabla --}}
 <div class="products-area-wrapper tableView">
     <div class="products-header">

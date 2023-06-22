@@ -61,15 +61,17 @@ Route::middleware(['custom.auth'])->group(function () {
 
     Route::get('/gerente/huespedes', [GerenteHuespedController::class, 'index'])->name('gerente/huespedes')->middleware("check");
     Route::get('/gerente/huespedes-show/{id}', [GerenteHuespedController::class, 'show'])->name('gerente/huespedes-show')->middleware("check");
+    Route::put('/gerente/huespedes-update/{id}', [GerenteHuespedController::class, "update"])->name('gerente/huespedes-update')->middleware("check");
+    Route::put('/gerente/huespedes-updateEmpresa/{id}', [GerenteHuespedController::class, "updateEmpresa"])->name('gerente/huespedes-updateEmpresa')->middleware("check");
 
     Route::get('/gerente/habitaciones', [GerenteHabitacionController::class, 'index'])->name('gerente/habitaciones')->middleware("check");
     Route::get('/gerente/habitaciones-show/{id}', [HabitacionController::class, 'show'])->name('gerente/habitaciones-show')->middleware("check");
-    Route::get('/gerente/habitaciones-showCreate', function () {
-        return view('view_gerente/habitaciones/showCreate');
-    })->name('gerente/habitaciones-showCreate')->middleware("check");
-    Route::post('/gerente/habitaciones-create', [HabitacionController::class, 'store'])->name('gerente/habitaciones-create')->middleware("check");
-    Route::put('/gerente/habitaciones-update/{id}', [HabitacionController::class, 'update'])->name('gerente/habitaciones-update')->middleware("check");
-    Route::delete('/gerente/habitaciones-delete/{id}', [HabitacionController::class, 'delete'])->name('gerente/habitaciones-delete')->middleware("check");
+    // Route::get('/gerente/habitaciones-showCreate', function () {
+    //     return view('view_gerente/habitaciones/showCreate');
+    // })->name('gerente/habitaciones-showCreate')->middleware("check");
+    Route::post('/gerente/habitaciones-create', [GerenteHabitacionController::class, 'store'])->name('gerente/habitaciones-create')->middleware("check");
+    Route::put('/gerente/habitaciones-update/{id}', [GerenteHabitacionController::class, 'update'])->name('gerente/habitaciones-update')->middleware("check");
+    Route::delete('/gerente/habitaciones-delete/{id}', [GerenteHabitacionController::class, 'delete'])->name('gerente/habitaciones-delete')->middleware("check");
 
     Route::get('/gerente/recepcionistas', [AdministradoresController::class, 'index'])->name('gerente/recepcionistas')->middleware("check");
     Route::get('/gerente/recepcionistas-show/{id}', [AdministradoresController::class, 'show'])->name('gerente/recepcionistas-show')->middleware("check");
