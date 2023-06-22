@@ -18,17 +18,21 @@ class AdminSeeder extends Seeder
     {
         
         Administrador::create([
-        'name'=>'admin',    
-        'email'=>'admin@gmail.com',   
-            'password'=>Hash::make('12345678'),    
-            'role'=>'admin'    
+            'nombres'=>'admin',
+            'apellidos'=>'adminLastname',    
+            'email'=>'admin@gmail.com',
+            'turno'=>'Mañana',
+            'telefono'=>'123456789',   
+            'password'=>Hash::make('12345678'), 
+            'dni'=>'12345678',   
+            'rol'=>'admin'    
         ]);
 
         Administrador::create([
             'name'=>'gerente',    
             'email'=>'gerente@gmail.com',   
             'password'=>Hash::make('12345678'),    
-            'role'=>'gerente' 
+            'rol'=>'gerente' 
         ]);
     }
 }

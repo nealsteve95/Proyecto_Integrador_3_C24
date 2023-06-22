@@ -12,14 +12,14 @@ class Administrador extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'name',
+        'nombres',
         'email',
         'password',
         'dni',
-        'lastName',
+        'apellidos',
         'turno',
-        'phone',
-        'role',
+        'telefono',
+        'rol',
     ];
 
     protected $collection = "Administradores";

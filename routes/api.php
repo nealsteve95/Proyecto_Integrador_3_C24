@@ -50,7 +50,17 @@ Route::get("/habitaciones",[ApiController::class,"listHabitaciones"]);
 Route::get("/auth/info",[ApiController::class,"getUser"]);
 //End point para obtener huesped con dni
 Route::get("/huesped",[ApiController::class,"getHuesped"]);
-//End point para obtener huesped con dni
+//End point para crear huesped
 Route::post("/huesped",[ApiController::class,"createHuesped"]);
+//End point para obtener los recepcionistas
+Route::get("/recepcionistas",[ApiController::class,"listRecepcionistas"]);
+//End point para eliminar recepcionistas
+Route::delete("/recepcionistas/{id}",[ApiController::class,"deleteRecepcionista"]);
+// End point para obtener todos los huespedes.
+Route::get("/huespedes", [ApiController::class, "listarHuespedes"]);
+// End point para actualizar un huesped especificado.
+Route::put("/huespedes-update/{id}", [ApiController::class, "actualizarHuespedes"]);
+// End point para sacar reservas de un solo huesped.
+Route::get("/reserva/{id}", [ApiController::class, "listaReservaFromOne"]);
 
 

@@ -18,14 +18,149 @@ use App\Models\Reserva;
 class ApiController extends Controller
 {
     //
-    public function createHuesped(Request $req)
+    public function listaReservaFromOne(Request $req,$id){
+        $reservas = Reserva::where("id_huesped",$id)->with("huesped")->with("habitacion")->get();
+        if($reservas->isEmpty()){
+            return response()->json([
+                "status"=>400,
+                "message"=>"No se encontraron reservas",
+            ],400);
+        }
+        return response()->json([
+            "status"=>200,
+            "message"=>"Se encontraron reservas",
+            "data"=>$reservas
+        ]);
+    }
+    public function actualizarHuespedes(Request $req, $id)
     {
+        // Validación de los datos de entrada
         $validator = Validator::make($req->all(), [
             "nombre_huesped" => "required|string|max:255",
             "apellido_huesped" => "required|string|max:255",
             "tipo_identificacion_huesped" => "required|string|in:DNI,Identificacion Extranjera",
             "identificacion_huesped" => "required|integer",
             "sexo_huesped" => "required|string|in:masculino,femenino",
+            "fecha_nacimiento_huesped" => "required|date_format:Y-m-d",
+            "nacionalidad_huesped" => "required|string",
+            "region_huesped" => "required|string",
+            "direccion_huesped" => "required|string",
+            "telefono_huesped" => "required|integer",
+            "correo_huesped" => "required|string|email|max:255|unique:users",
+            "nombre_empresa" => "max:255",
+            "ruc_empresa" => "max:255",
+            "razon_social_empresa" => "max:255",
+            "direccion_empresa" => "max:255",
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'message' => "Revisa tus datos",
+                'error' => $validator->errors(),
+            ], 400);
+        }
+
+        $huesped = Huesped::find($id);
+
+        if (!$huesped) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Huesped no encontrado',
+            ], 404);
+        }
+
+        $huesped->update([
+            "identificacion" => [
+                "tipo_identificacion" => $req->input("tipo_identificacion_huesped"),
+                "identificacion_huesped" => $req->input("identificacion_huesped")
+            ],
+            "nombres" => $req->input("nombre_huesped"),
+            "apellidos" => $req->input("apellido_huesped"),
+            "sexo" => $req->input("sexo_huesped"),
+            "fecha_nacimiento" => $req->input("fecha_nacimiento_huesped"),
+            "nacionalidad" => $req->input("nacionalidad_huesped"),
+            "region" => $req->input("region_huesped"),
+            "direccion" => $req->input("direccion_huesped"),
+            "telefono" => $req->input("telefono_huesped"),
+            "correo" => $req->input("correo_huesped"),
+            "empresa" => [
+                "nombre_empresa" => $req->input("nombre_empresa"),
+                "ruc_empresa" => $req->input("ruc_empresa"),
+                "razon_social" => $req->input("razon_social_empresa"),
+                "direccion_empresa" => $req->input("direccion_empresa")
+            ]
+        ]);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Datos del huésped actualizados con éxito',
+            'data' => $huesped
+        ], 200);
+    }
+
+
+    public function listarHuespedes()
+    {
+        $huespedes = Huesped::all();
+        if ($huespedes) {
+            $cantidad = $huespedes->count();
+            return response()->json([
+                "status" => 200,
+                "message" => "Se han encontrado $cantidad huespedes",
+                "data" => $huespedes
+            ]);
+        } else {
+            return response()->json([
+                "status" => 400,
+                "message" => "No se han encontrado huespedes"
+            ], 400);
+        }
+    }
+    public function deleteRecepcionista(Request $req)
+    {
+        $id = $req->id;
+
+        $deleted = Administrador::destroy($id);
+
+        if ($deleted) {
+            return response()->json([
+                'status' => 200,
+                'message' => 'Recepcionista eliminado correctamente',
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 400,
+                'message' => 'Recepcionista no encontrado',
+            ], 400);
+        }
+    }
+    public function listRecepcionistas(Request $req)
+    {
+        $administradores = Administrador::where('rol', 'admin')->get();
+        if ($administradores) {
+            $cantidad = $administradores->count();
+            return response()->json([
+                "status" => 200,
+                "message" => "Se han encontrado $cantidad recepcionistas",
+                "data" => $administradores
+            ]);
+        } else {
+            return response()->json([
+                "status" => 400,
+                "message" => "No se han encontrado recepcionistas",
+                "data" => []
+            ], 400);
+        }
+    }
+    public function createHuesped(Request $req)
+    {
+        $validator = Validator::make($req->all(), [
+            "nombre_huesped" => "required|string|max:255",
+            "apellido_huesped" => "required|string|max:255",
+            "tipo_identificacion_huesped" => "required|string|in:Dni,Carnet Extranjeria",
+            "identificacion_huesped" => "required|integer",
+            "sexo_huesped" => "required|string|in:Masculino,Femenino",
             "fecha_nacimiento_huesped" => "required|date_format:Y-m-d",
             "nacionalidad_huesped" => "required|string",
             "region_huesped" => "required|string",
@@ -103,7 +238,7 @@ class ApiController extends Controller
                     "data" => []
                 ], 400);
             }
-        } else if($req->tipo == "extranjero"){
+        } else if ($req->tipo == "extranjero") {
             $id = $req->id;
             $huesped = Huesped::where('identificacion.identificacion_huesped', $id)
                 ->where('identificacion.tipo_identificacion', 'Identificacion Extranjera')
@@ -160,7 +295,7 @@ class ApiController extends Controller
     public function checkAuthRole(Request $req)
     {
         if ($req->input("role") == "gerente") {
-            if (Auth::guard('sanctum')->check() && Auth::guard('sanctum')->user()->role == "gerente") {
+            if (Auth::guard('sanctum')->check() && Auth::guard('sanctum')->user()->rol == "gerente") {
                 return response()->json([
                     "status" => 200,
                     "message" => "Autorizado"
@@ -172,7 +307,7 @@ class ApiController extends Controller
                 ], 400);
             }
         } else if ($req->input("role") == "admin") {
-            if (Auth::guard('sanctum')->check() && Auth::guard('sanctum')->user()->role == "admin") {
+            if (Auth::guard('sanctum')->check() && Auth::guard('sanctum')->user()->rol == "admin") {
                 return response()->json([
                     "status" => 200,
                     "message" => "Autorizado"
@@ -231,27 +366,17 @@ class ApiController extends Controller
     {
         //
         $validator = Validator::make($request->all(), [
-            /*             "nombre_huesped" => "required|string|max:255",
-            "apellido_huesped" => "required|string|max:255",
-            "tipo_identificacion_huesped" => "required|string|in:dni,carnet extranjeria",
-            "identificacion_huesped" => "required|integer",
-            "sexo_huesped" => "required|string|in:hombre,mujer",
-            "fecha_nacimiento_huesped" => "required|date_format:d-m-Y",
-            "nacionalidad_huesped" => "required|string",
-            "region_huesped" => "required|string",
-            "direccion_huesped" => "required|string",
-            "telefono_huesped" => "required|integer",
-            "correo_huesped" => "required|string|email|max:255|unique:users",
-            "ruc_empresa" => "integer",
-            "razon_social_empresa" => "string",
-            "direccion_empresa" => "string", */
 
             "id_huesped" => "required|string|unique:users",
             "fecha_reserva" => "required|date_format:d-m-Y H:i",
             "cantidad_dias_reserva" => "required|integer",
             "pax_reserva" => "required|integer",
-            "nro_habitacion_reserva" => "required|integer",
-            "tipo_habitacion_reserva" => "required|string",
+            "id_habitacion_reserva" => "required|string",
+            "tipo_reserva"=>"required|string",
+            "razon_hospedaje"=>"required|string",
+            "destinatario_reserva"=>"required|string",
+            "hora_llegada"=>"required|string",
+
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -259,50 +384,23 @@ class ApiController extends Controller
                 'message' => $validator->errors(),
             ], 400);
         }
-        /*         $dataIdentificacion = [
-            "tipo_identificacion" => $request->tipo_identificacion_huesped,
-            "identificacion_huesped" => $request->identificacion_huesped
-        ];
-        $dataEmpresa = [
-            "ruc_empresa" => $request->ruc_empresa,
-            "razon_social_empresa" => $request->razon_social_empresa,
-            "direccion_empresa" => $request->direccion_empresa,
-        ];
-        $dataHuesped = [
-            "nombre_huesped" => $request->nombre_huesped,
-            "apellido_huesped" => $request->apellido_huesped,
-            "identificacion" => $dataIdentificacion,
-            "sexo" => $request->sexo_huesped,
-            "fecha_nacimiento" => $request->fecha_nacimiento_huesped,
-            "nacionalidad_huesped" => $request->nacionalidad_huesped,
-            "region_huesped" => $request->region_huesped,
-            "direccion_huesped" => $request->direccion_huesped,
-            "telefono_huesped" => $request->telefono_huesped,
-            "correo_huesped" => $request->correo_huesped,
-            "empresa" => $dataEmpresa
-        ]; */
-        $dataHabitacion = [
-            "nro_habitacion_reserva" => $request->nro_habitacion_reserva,
-            "tipo_habitacion_reserva" => $request->tipo_habitacion_reserva,
-        ];
+
 
         $dataReserva = [
             "fecha_reserva" => $request->fecha_reserva,
             "cantidad_dias_reserva" => $request->cantidad_dias_reserva,
             "pax_reserva" => $request->pax_reserva,
-            "habitacion" => $dataHabitacion
+            "tipo_reserva"=>$request->tipo_reserva,
+            "razon_hospedaje"=>$request->razon_hospedaje,
+            "destinatario_reserva"=>$request->destinatario_reserva,
+            "peticiones_adicionales"=>$request->peticiones_adicionales,
+            "hora_llegada"=>$request->hora_llegada
+            
         ];
-        $data = [
-            "id_huesped" => $request->id_huesped,
-            "datosReserva" => $dataReserva
-        ];
-        /* $reserva = new Reserva;
-        $reserva->datosHuesped = $data["datosHuesped"];
-        $reserva->datosReserva = $data["datosReserva"];
-        $reserva->save(); */
         $reserva = Reserva::create([
             "id_huesped" => $request->id_huesped,
             "datosReserva" => $dataReserva,
+            "id_habitacion" => $request->id_habitacion_reserva,
         ]);
         return response()->json([
             'status' => 200,
@@ -484,10 +582,14 @@ class ApiController extends Controller
     public function register(Request $req)
     {
         $validator = Validator::make($req->all(), [
-            "name" => "required|string|max:255",
-            "email" => "required|string|email|max:255|unique:users",
+            "nombres" => "required|string|max:255",
+            "apellidos" => "required|string|max:255",
+            "dni" => "required|string|max:8",
+            "turno" => "required|string|max:20",
+            "telefono" => "required|integer",
+            "correo" => "required|string|email|max:255|unique:users",
             "password" => "required|string|min:8",
-            "role" => "required|string|min:4",
+            "rol" => "required|string|min:4",
         ]);
 
         if ($validator->fails()) {
@@ -497,16 +599,15 @@ class ApiController extends Controller
                 "error" => $validator->errors()
             ], 400);
         }
-
         $user = Administrador::create(
             [
-                "name" => $req->name,
-                "email" => $req->email,
+                "nombres" => $req->nombres,
+                "apellidos" => $req->apellidos,
+                "email" => $req->correo,
                 "password" => Hash::make($req->password),
-                "role" => $req->role,
-                "phone" => $req->phone,
+                "rol" => $req->rol,
+                "telefono" => $req->telefono,
                 "turno" => $req->turno,
-                "lastName" => $req->lastName,
                 "dni" => $req->dni,
 
             ]
@@ -524,7 +625,6 @@ class ApiController extends Controller
     {
         if (!Auth::attempt($req->only("email", "password"))) {
 
-            /* return redirect()->route('login')->with('error', 'Credenciales Incorrectas'); */
             return response()->json([
                 "status" => 400,
                 "message" => "Credenciales Incorrectas",
@@ -533,7 +633,7 @@ class ApiController extends Controller
         $user = Administrador::where("email", $req["email"])->firstOrFail();
 
         $token = $user->createToken("token")->plainTextToken;
-        $role = $user->role;
+        $role = $user->rol;
         return response()->json([
             "status" => 200,
             "message" => "Sesión Iniciada Correctamente",
