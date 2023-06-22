@@ -64,4 +64,4 @@ Route::put("/huespedes/{id}", [ApiController::class, "actualizarHuespedes"]);
 // End point para actualizar una empresa especificado.
 Route::put("/huespedesEmpresa/{id}", [ApiController::class, "actualizarEmpresa"]);
 // End point para eliminar un huesped especificado.
-Route::delete('/huespedes/{id}', [ApiController::class, "eliminarHuesped"]);
+// Route::delete('/habitacion/{id}', [ApiController::class, "eliminarHabitacion"]);

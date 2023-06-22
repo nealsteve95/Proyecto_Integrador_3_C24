@@ -131,24 +131,39 @@ class ApiController extends Controller
         ]);
     }
 
-    public function eliminarHuesped($id)
-    {
-        $huesped = Huesped::find($id);
+    // public function eliminarHabitacion(Request $req)
+    // {
+    //     $validator = Validator::make($req->all(), [
+    //         "id" => "required|string",
+    //     ]);
+    //     if ($validator->fails()) {
+    //         return response()->json([
+    //             'status' => 400,
+    //             'message' => "Parametro incorrecto",
+    //             'error' => $validator->errors(),
+    //         ], 400);
+    //     }
 
-        if (!$huesped) {
-            return response()->json([
-                'status' => 404,
-                'message' => 'Huesped no encontrado',
-            ], 404);
-        }
+    //     if ($req->id) {
+    //         $id = $req->id;
+    //         $habitacion = Habitacion::find($id);
 
-        $huesped->delete();
+    //         if (!$habitacion) {
+    //             return response()->json([
+    //                 'status' => 404,
+    //                 'message' => 'habitacion no encontrado',
+    //             ], 404);
+    //         }
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'Huesped eliminado exitosamente',
-        ]);
-    }
+    //         $habitacion->delete();
+
+    //         return response()->json([
+    //             'status' => 200,
+    //             'message' => 'habitacion eliminado exitosamente',
+    //         ]);
+    //     }
+    // }
+
 
     public function actualizarHuespedes(Request $req, $id)
     {
